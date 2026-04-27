@@ -1,4 +1,4 @@
-# TrickLor — Windows System Toolkit
+# TrickLor — Windows System Toolkit 100% Claudecode = ))
 
 Công cụ tối ưu hóa, bảo trì và triển khai Windows toàn diện, được xây dựng bằng WPF (.NET 10).
 
