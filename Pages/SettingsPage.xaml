@@ -1,0 +1,166 @@
+<Page x:Class="WinDeployPro.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="{DynamicResource BrushBg}"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+            <StackPanel>
+                <TextBlock Style="{StaticResource PageTitle}" Text="⚙ Cài đặt"/>
+                <TextBlock Style="{StaticResource PageSubtitle}"
+                           Text="Tùy chỉnh giao diện và hành vi của ứng dụng"/>
+            </StackPanel>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="32,24,32,24">
+            <StackPanel>
+
+                <!-- SECTION: GIAO DIỆN -->
+                <TextBlock Text="GIAO DIỆN" Style="{StaticResource SectionLabel}"/>
+                <Border Style="{StaticResource Card}" Margin="0,0,0,24">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Border Width="32" Height="32" CornerRadius="8" Background="#F5F3FF" Margin="0,0,12,0">
+                                <TextBlock Text="🖥" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Chế độ hiển thị" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Bật / tắt giao diện tối cho toàn bộ ứng dụng" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <TextBlock Text="Giao diện tối" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Chuyển nền tối — giảm mỏi mắt trong môi trường tối" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                            </StackPanel>
+                            <CheckBox x:Name="ChkDarkMode" Grid.Column="1" Style="{StaticResource ToggleSwitch}"
+                                      VerticalAlignment="Center"
+                                      Checked="DarkMode_Changed" Unchecked="DarkMode_Changed"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- SECTION: MÀU NHẤN -->
+                <TextBlock Text="MÀU NHẤN" Style="{StaticResource SectionLabel}"/>
+                <Border Style="{StaticResource Card}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Border Width="32" Height="32" CornerRadius="8" Background="#FFF7ED" Margin="0,0,12,0">
+                                <TextBlock Text="🎨" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Màu nhấn chủ đề" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Áp dụng cho nút, toggle, badge và các điểm nhấn trong UI" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <!-- Màu hiện tại -->
+                        <Border Background="{DynamicResource BrushBg}" CornerRadius="8"
+                                Padding="16,12" Margin="0,0,0,20">
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="CurrentSwatch" Width="44" Height="44"
+                                        CornerRadius="12" Margin="0,0,16,0"/>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Màu hiện tại" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,4"/>
+                                    <TextBlock x:Name="TxtCurrentColor" Text="#3B82F6"
+                                               Foreground="{DynamicResource BrushText}" FontSize="15"
+                                               FontWeight="SemiBold" FontFamily="Consolas"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Input -->
+                        <TextBlock Text="Nhập mã màu HTML" Foreground="{DynamicResource BrushMuted}"
+                                   FontSize="11" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                        <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="8"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="TxtColorInput" Grid.Column="0"
+                                     Style="{StaticResource InputBox}"
+                                     MaxLength="7" FontFamily="Consolas" FontSize="14"
+                                     TextChanged="ColorInput_Changed"/>
+                            <Border x:Name="InputSwatch" Grid.Column="2" CornerRadius="8"/>
+                            <Button Grid.Column="4" Style="{StaticResource BtnPrimary}"
+                                    Content="✓  Áp dụng" Click="ApplyColor_Click" MinWidth="110"/>
+                            <Button Grid.Column="6" Style="{StaticResource BtnGhost}"
+                                    Content="Đặt lại" Click="ResetColor_Click"/>
+                        </Grid>
+
+                        <!-- Presets -->
+                        <TextBlock Text="Màu có sẵn" Foreground="{DynamicResource BrushMuted}"
+                                   FontSize="11" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <WrapPanel>
+                            <Button Tag="#3B82F6" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#3B82F6 — Blue">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#3B82F6"/>
+                            </Button>
+                            <Button Tag="#6366F1" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#6366F1 — Indigo">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#6366F1"/>
+                            </Button>
+                            <Button Tag="#8B5CF6" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#8B5CF6 — Purple">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#8B5CF6"/>
+                            </Button>
+                            <Button Tag="#EC4899" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#EC4899 — Pink">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#EC4899"/>
+                            </Button>
+                            <Button Tag="#EF4444" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#EF4444 — Red">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#EF4444"/>
+                            </Button>
+                            <Button Tag="#F97316" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#F97316 — Orange">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#F97316"/>
+                            </Button>
+                            <Button Tag="#F59E0B" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#F59E0B — Amber">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#F59E0B"/>
+                            </Button>
+                            <Button Tag="#22C55E" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#22C55E — Green">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#22C55E"/>
+                            </Button>
+                            <Button Tag="#14B8A6" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#14B8A6 — Teal">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#14B8A6"/>
+                            </Button>
+                            <Button Tag="#06B6D4" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#06B6D4 — Cyan">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#06B6D4"/>
+                            </Button>
+                            <Button Tag="#64748B" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#64748B — Slate">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#64748B"/>
+                            </Button>
+                            <Button Tag="#0F172A" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#0F172A — Dark">
+                                <Border Width="36" Height="36" CornerRadius="10" Background="#0F172A"/>
+                            </Button>
+                        </WrapPanel>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- BOTTOM STATUS -->
+        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+            <TextBlock x:Name="TxtStatus" Text="Cài đặt được lưu tự động"
+                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
+        </Border>
+    </Grid>
+</Page>

@@ -1,7 +1,7 @@
 <Page x:Class="WinDeployPro.Pages.SystemInfoPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{StaticResource BrushBg}"
+      Background="{DynamicResource BrushBg}"
       Loaded="Page_Loaded"
       Unloaded="Page_Unloaded">
 
@@ -13,8 +13,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -40,16 +40,16 @@
 
                     <Border Style="{StaticResource CardSmall}" Margin="0,0,12,0">
                         <StackPanel>
-                            <TextBlock Text="🖥  Tên máy" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
-                            <TextBlock x:Name="TxtMachineName" Text="..." Foreground="{StaticResource BrushText}"
+                            <TextBlock Text="🖥  Tên máy" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBlock x:Name="TxtMachineName" Text="..." Foreground="{DynamicResource BrushText}"
                                        FontSize="14" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
                     </Border>
 
                     <Border Style="{StaticResource CardSmall}" Margin="0,0,12,0">
                         <StackPanel>
-                            <TextBlock Text="🔑  Mã máy" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
-                            <TextBlock x:Name="TxtMachineId" Text="..." Foreground="{StaticResource BrushText}"
+                            <TextBlock Text="🔑  Mã máy" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBlock x:Name="TxtMachineId" Text="..." Foreground="{DynamicResource BrushText}"
                                        FontSize="11" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"
                                        ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
                         </StackPanel>
@@ -57,16 +57,16 @@
 
                     <Border Style="{StaticResource CardSmall}" Margin="0,0,12,0">
                         <StackPanel>
-                            <TextBlock Text="🕐  Múi giờ" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
-                            <TextBlock x:Name="TxtTimezone" Text="..." Foreground="{StaticResource BrushText}"
+                            <TextBlock Text="🕐  Múi giờ" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBlock x:Name="TxtTimezone" Text="..." Foreground="{DynamicResource BrushText}"
                                        FontSize="12" FontWeight="SemiBold" TextWrapping="Wrap"/>
                         </StackPanel>
                     </Border>
 
                     <Border Style="{StaticResource CardSmall}" Margin="0">
                         <StackPanel>
-                            <TextBlock Text="🪟  Hệ điều hành" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
-                            <TextBlock x:Name="TxtOS" Text="..." Foreground="{StaticResource BrushText}"
+                            <TextBlock Text="🪟  Hệ điều hành" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                            <TextBlock x:Name="TxtOS" Text="..." Foreground="{DynamicResource BrushText}"
                                        FontSize="11" FontWeight="SemiBold" TextWrapping="Wrap"/>
                         </StackPanel>
                     </Border>
@@ -82,8 +82,8 @@
                                 <TextBlock Text="⚙" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="CPU" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
-                                <TextBlock x:Name="TxtCpuName" Text="..." Foreground="{StaticResource BrushText}"
+                                <TextBlock Text="CPU" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock x:Name="TxtCpuName" Text="..." Foreground="{DynamicResource BrushText}"
                                            FontSize="13" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                             </StackPanel>
                         </StackPanel>
@@ -95,8 +95,8 @@
                                 <TextBlock Text="🎮" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="GPU" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
-                                <TextBlock x:Name="TxtGpuName" Text="..." Foreground="{StaticResource BrushText}"
+                                <TextBlock Text="GPU" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock x:Name="TxtGpuName" Text="..." Foreground="{DynamicResource BrushText}"
                                            FontSize="13" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                             </StackPanel>
                         </StackPanel>
@@ -131,8 +131,8 @@
                                     <TextBlock Text="🧠" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="RAM" Foreground="{StaticResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="TxtRamDetail" Text="..." Foreground="{StaticResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="RAM" Foreground="{DynamicResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="TxtRamDetail" Text="..." Foreground="{DynamicResource BrushText}" FontSize="13"/>
                                 </StackPanel>
                                 <TextBlock x:Name="TxtRamPct" Grid.Column="2" Text="0%"
                                            Foreground="#3B82F6" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
@@ -140,8 +140,8 @@
                             <ProgressBar x:Name="BarRam" Height="14" Value="0" Maximum="100"
                                          Foreground="#3B82F6" Margin="0,0,0,8"/>
                             <Grid>
-                                <TextBlock x:Name="TxtRamUsed" Text="Đã dùng: ..." Foreground="{StaticResource BrushMuted}" FontSize="11"/>
-                                <TextBlock x:Name="TxtRamFree" Text="Còn trống: ..." Foreground="{StaticResource BrushMuted}" FontSize="11" HorizontalAlignment="Right"/>
+                                <TextBlock x:Name="TxtRamUsed" Text="Đã dùng: ..." Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock x:Name="TxtRamFree" Text="Còn trống: ..." Foreground="{DynamicResource BrushMuted}" FontSize="11" HorizontalAlignment="Right"/>
                             </Grid>
                         </StackPanel>
                     </Border>
@@ -159,8 +159,8 @@
                                     <TextBlock Text="💿" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="Ổ cứng (C:)" Foreground="{StaticResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="TxtDiskDetail" Text="..." Foreground="{StaticResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Ổ cứng (C:)" Foreground="{DynamicResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="TxtDiskDetail" Text="..." Foreground="{DynamicResource BrushText}" FontSize="13"/>
                                 </StackPanel>
                                 <TextBlock x:Name="TxtDiskPct" Grid.Column="2" Text="0%"
                                            Foreground="#22C55E" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
@@ -168,8 +168,8 @@
                             <ProgressBar x:Name="BarDisk" Height="14" Value="0" Maximum="100"
                                          Foreground="#22C55E" Margin="0,0,0,8"/>
                             <Grid>
-                                <TextBlock x:Name="TxtDiskUsed" Text="Đã dùng: ..." Foreground="{StaticResource BrushMuted}" FontSize="11"/>
-                                <TextBlock x:Name="TxtDiskFree" Text="Còn trống: ..." Foreground="{StaticResource BrushMuted}" FontSize="11" HorizontalAlignment="Right"/>
+                                <TextBlock x:Name="TxtDiskUsed" Text="Đã dùng: ..." Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock x:Name="TxtDiskFree" Text="Còn trống: ..." Foreground="{DynamicResource BrushMuted}" FontSize="11" HorizontalAlignment="Right"/>
                             </Grid>
                         </StackPanel>
                     </Border>
@@ -187,15 +187,15 @@
                                     <TextBlock Text="📊" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="CPU Load" Foreground="{StaticResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="TxtCpuDetail" Text="Cập nhật mỗi 2 giây" Foreground="{StaticResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="CPU Load" Foreground="{DynamicResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="TxtCpuDetail" Text="Cập nhật mỗi 2 giây" Foreground="{DynamicResource BrushText}" FontSize="13"/>
                                 </StackPanel>
                                 <TextBlock x:Name="TxtCpuPct" Grid.Column="2" Text="0%"
                                            Foreground="#8B5CF6" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
                             </Grid>
                             <ProgressBar x:Name="BarCpu" Height="14" Value="0" Maximum="100"
                                          Foreground="#8B5CF6" Margin="0,0,0,8"/>
-                            <TextBlock Text="● Live — tự cập nhật" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="● Live — tự cập nhật" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
                     </Border>
 
@@ -212,15 +212,15 @@
                                     <TextBlock Text="🔋" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                    <TextBlock Text="Pin" Foreground="{StaticResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
-                                    <TextBlock x:Name="TxtBatDetail" Text="..." Foreground="{StaticResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Pin" Foreground="{DynamicResource BrushMuted}" FontSize="11" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="TxtBatDetail" Text="..." Foreground="{DynamicResource BrushText}" FontSize="13"/>
                                 </StackPanel>
                                 <TextBlock x:Name="TxtBatPct" Grid.Column="2" Text="—"
                                            Foreground="#F59E0B" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
                             </Grid>
                             <ProgressBar x:Name="BarBat" Height="14" Value="0" Maximum="100"
                                          Foreground="#F59E0B" Margin="0,0,0,8"/>
-                            <TextBlock x:Name="TxtBatStatus" Text="..." Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock x:Name="TxtBatStatus" Text="..." Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
                     </Border>
 
@@ -230,10 +230,10 @@
         </ScrollViewer>
 
         <!-- BOTTOM STATUS -->
-        <Border Grid.Row="2" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtSysStatus" Text="Đang tải thông tin hệ thống..."
-                       Foreground="{StaticResource BrushMuted}" FontSize="13"/>
+                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
         </Border>
     </Grid>
 </Page>

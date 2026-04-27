@@ -1,0 +1,511 @@
+<Page x:Class="WinDeployPro.Pages.DebloatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="{DynamicResource BrushBg}"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource PageTitle}" Text="🧹 Debloat"/>
+                    <TextBlock Style="{StaticResource PageSubtitle}"
+                               Text="Gỡ ứng dụng thừa khỏi Windows — tạo điểm khôi phục trước khi chạy"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button x:Name="BtnRestorePoint" Style="{StaticResource BtnPrimary}"
+                            Content="🛡  Tạo điểm khôi phục" Click="CreateRestore_Click" MinWidth="180"/>
+                    <Button Style="{StaticResource BtnGhost}" Content="Mở System Restore"
+                            Click="OpenRestore_Click" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- CONTENT -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="32,24,32,8">
+            <StackPanel>
+
+                <!-- PRESET BUTTONS -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Chọn nhanh" Foreground="{DynamicResource BrushText}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <TextBlock Text="Chọn sẵn các mục phổ biến hoặc chọn tất cả" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Style="{StaticResource BtnGhost}" Content="✅  Cơ bản"
+                                    Click="PresetBasic_Click" MinWidth="100" Margin="0,0,8,0"/>
+                            <Button Style="{StaticResource BtnGhost}" Content="☑  Tất cả"
+                                    Click="PresetAll_Click" MinWidth="100" Margin="0,0,8,0"/>
+                            <Button Style="{StaticResource BtnGhost}" Content="☐  Bỏ chọn"
+                                    Click="PresetNone_Click" MinWidth="100"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- TWO-COLUMN GRID -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- ── Xbox & Gaming ── -->
+                    <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="32" Height="32" CornerRadius="8" Background="#FFF0F0FF" Margin="0,0,12,0">
+                                    <TextBlock Text="🎮" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Xbox &amp; Gaming" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Gỡ hệ sinh thái Xbox không cần thiết" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Xbox App" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.XboxApp" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkXboxApp" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Xbox Game Bar" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.XboxGamingOverlay" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkXboxGamingOverlay" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Xbox Game Overlay" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.XboxGameOverlay" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkXboxGameOverlay" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Xbox Identity Provider" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.XboxIdentityProvider" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkXboxIdentity" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Xbox TCUI" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.Xbox.TCUI" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkXboxTCUI" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- ── Microsoft Entertainment ── -->
+                    <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="32" Height="32" CornerRadius="8" Background="#FFFFF0E0" Margin="0,0,12,0">
+                                    <TextBlock Text="🎵" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Microsoft Entertainment" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Ứng dụng giải trí tích hợp sẵn" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Solitaire Collection" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.MicrosoftSolitaireCollection" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkSolitaire" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="3D Viewer" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.Microsoft3DViewer" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="Chk3DViewer" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Mixed Reality Portal" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.MixedReality.Portal" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkMixedReality" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Groove Music" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.ZuneMusic" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkZuneMusic" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Movies &amp; TV" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.ZuneVideo" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkZuneVideo" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Get Started / Tips" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.Getstarted" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkGetStarted" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- ── Communication ── -->
+                    <Border Grid.Row="2" Grid.Column="0" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="32" Height="32" CornerRadius="8" Background="#FFE0F0FF" Margin="0,0,12,0">
+                                    <TextBlock Text="💬" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Communication" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Ứng dụng liên lạc tích hợp" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Skype" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.SkypeApp" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkSkype" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="People" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.People" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkPeople" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Mail &amp; Calendar" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="microsoft.windowscommunicationsapps" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkMailCalendar" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Your Phone / Link to Windows" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.YourPhone" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkYourPhone" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Teams Chat (Taskbar)" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Registry: TaskbarMn = 0" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkTeamsChat" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- ── Productivity ── -->
+                    <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="32" Height="32" CornerRadius="8" Background="#FFF0FFF0" Margin="0,0,12,0">
+                                    <TextBlock Text="📋" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Productivity" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Ứng dụng năng suất không cần thiết" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="OneDrive" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="OneDriveSetup.exe /uninstall" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkOneDrive" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Cortana" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.549981C3F5F10" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkCortana" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Office Hub" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.MicrosoftOfficeHub" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkOfficeHub" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Feedback Hub" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.WindowsFeedbackHub" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkFeedbackHub" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="OneNote (Store)" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.Office.OneNote" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkOneNote" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- ── Windows Features ── -->
+                    <Border Grid.Row="4" Grid.Column="0" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="32" Height="32" CornerRadius="8" Background="#FFFFF8E0" Margin="0,0,12,0">
+                                    <TextBlock Text="🪟" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Windows Features" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Tính năng hệ thống có thể vô hiệu hoá" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Widgets Taskbar" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Registry: TaskbarDa = 0" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkWidgets" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Bing Search in Start" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Registry: BingSearchEnabled = 0" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkBingSearch" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Maps" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.WindowsMaps" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkMaps" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Bing News" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.BingNews" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkBingNews" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Bing Weather" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.BingWeather" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkBingWeather" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- ── OEM Bloatware ── -->
+                    <Border Grid.Row="4" Grid.Column="2" Style="{StaticResource Card}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                                <Border Width="32" Height="32" CornerRadius="8" Background="#FFFCE4EC" Margin="0,0,12,0">
+                                    <TextBlock Text="🗑" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="OEM Bloatware" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Ứng dụng bên thứ ba được cài sẵn" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Candy Crush" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="king.com.Candy*" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkCandyCrush" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Spotify" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="SpotifyAB.SpotifyMusic" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkSpotify" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Amazon" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Amazon.com.Amazon" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkAmazon" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="Facebook" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Facebook.Facebook" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkFacebook" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="TikTok" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="*TikTok*" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkTikTok" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                            <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,10"/>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="LinkedIn" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                    <TextBlock Text="Microsoft.LinkedIn" Foreground="{DynamicResource BrushMuted}" FontSize="10" FontFamily="Consolas"/>
+                                </StackPanel>
+                                <CheckBox x:Name="ChkLinkedIn" Grid.Column="1" Style="{StaticResource ToggleSwitch}" VerticalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                </Grid>
+
+                <!-- APPLY CARD -->
+                <Border Style="{StaticResource Card}" Margin="0,16,0,24">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Text="Áp dụng tất cả mục đã chọn" Foreground="{DynamicResource BrushText}" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                            <TextBlock x:Name="TxtProgress" Text="Chọn các mục bên trên và nhấn Chạy Debloat"
+                                       Foreground="{DynamicResource BrushMuted}" FontSize="12" TextWrapping="Wrap"/>
+                        </StackPanel>
+                        <Button x:Name="BtnApply" Grid.Column="1" Style="{StaticResource BtnPrimary}"
+                                Content="▶  Chạy Debloat" Click="ApplyDebloat_Click"
+                                MinWidth="160" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- BOTTOM STATUS -->
+        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+            <TextBlock x:Name="TxtStatus" Text="Sẵn sàng"
+                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
+        </Border>
+    </Grid>
+</Page>

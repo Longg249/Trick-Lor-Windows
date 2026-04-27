@@ -1,7 +1,7 @@
 <Page x:Class="WinDeployPro.Pages.SecurityPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{StaticResource BrushBg}"
+      Background="{DynamicResource BrushBg}"
       Loaded="Page_Loaded">
 
     <Grid>
@@ -12,8 +12,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <StackPanel>
                 <TextBlock Style="{StaticResource PageTitle}" Text="🔒 Windows Security"/>
                 <TextBlock Style="{StaticResource PageSubtitle}"
@@ -43,26 +43,26 @@
                                 <TextBlock Text="🔔" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Thông báo &amp; Tài khoản" Foreground="{StaticResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Notifications &amp; account control" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Thông báo &amp; Tài khoản" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Notifications &amp; account control" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Thông báo Windows (Toast)" Foreground="{StaticResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Hiển thị thông báo hệ thống góc màn hình" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Thông báo Windows (Toast)" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Hiển thị thông báo hệ thống góc màn hình" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                             <CheckBox x:Name="ChkToast" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="UAC (User Account Control)" Foreground="{StaticResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Xác nhận khi ứng dụng yêu cầu quyền Admin" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="UAC (User Account Control)" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Xác nhận khi ứng dụng yêu cầu quyền Admin" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                             <CheckBox x:Name="ChkUAC" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
@@ -81,26 +81,26 @@
                                 <TextBlock Text="🛡" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Bộ lọc &amp; Cảnh báo" Foreground="{StaticResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="SmartScreen &amp; security alerts" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Bộ lọc &amp; Cảnh báo" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="SmartScreen &amp; security alerts" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="SmartScreen Filter" Foreground="{StaticResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Chặn ứng dụng/web chưa được xác minh" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="SmartScreen Filter" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Chặn ứng dụng/web chưa được xác minh" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                             <CheckBox x:Name="ChkSmart" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Security Alerts" Foreground="{StaticResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Cảnh báo từ Windows Security Center" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Security Alerts" Foreground="{DynamicResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Cảnh báo từ Windows Security Center" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                             <CheckBox x:Name="ChkAlerts" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
@@ -119,16 +119,16 @@
                                 <TextBlock Text="🔥" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Tường lửa" Foreground="{StaticResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Windows Firewall" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tường lửa" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Windows Firewall" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tường lửa Windows" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                <TextBlock Text="Kiểm soát lưu lượng mạng vào/ra máy tính" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tường lửa Windows" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                <TextBlock Text="Kiểm soát lưu lượng mạng vào/ra máy tính" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                             <CheckBox x:Name="ChkFirewall" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
@@ -152,11 +152,11 @@
         </ScrollViewer>
 
         <!-- BOTTOM STATUS -->
-        <Border Grid.Row="2" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtSecStatus"
                        Text="⚠  Một số thay đổi yêu cầu quyền Administrator và khởi động lại"
-                       Foreground="{StaticResource BrushMuted}" FontSize="13"/>
+                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
         </Border>
     </Grid>
 </Page>

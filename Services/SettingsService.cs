@@ -21,11 +21,13 @@ namespace WinDeployPro.Services
         public static bool IsDarkMode
         {
             get => _current.IsDarkMode;
-            set
-            {
-                _current.IsDarkMode = value;
-                Save();
-            }
+            set { _current.IsDarkMode = value; Save(); }
+        }
+
+        public static string AccentColor
+        {
+            get => _current.AccentColor;
+            set { _current.AccentColor = value; Save(); }
         }
 
         private static void Load()
@@ -61,7 +63,8 @@ namespace WinDeployPro.Services
 
         private class Settings
         {
-            public bool IsDarkMode { get; set; } = true;
+            public bool IsDarkMode  { get; set; } = true;
+            public string AccentColor { get; set; } = "#3B82F6";
         }
     }
 }

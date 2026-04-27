@@ -1,7 +1,7 @@
 <Page x:Class="WinDeployPro.Pages.DeployPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{StaticResource BrushBg}">
+      Background="{DynamicResource BrushBg}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -11,8 +11,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -47,8 +47,8 @@
                                     <TextBlock Text="📦" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="7-Zip" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Nén / giải nén file" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="7-Zip" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Nén / giải nén file" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="Chk7Zip" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="True" VerticalAlignment="Top"/>
@@ -63,8 +63,8 @@
                                     <TextBlock Text="📝" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Notepad++" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Trình soạn thảo văn bản" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Notepad++" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Trình soạn thảo văn bản" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkNotepad" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="True" VerticalAlignment="Top"/>
@@ -79,8 +79,8 @@
                                     <TextBlock Text="🖥" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="PowerToys" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Công cụ Windows nâng cao" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="PowerToys" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Công cụ Windows nâng cao" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkPowerToys" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -95,8 +95,8 @@
                                     <TextBlock Text="🔒" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="KeePass" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Quản lý mật khẩu" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="KeePass" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Quản lý mật khẩu" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkKeePass" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -111,8 +111,8 @@
                                     <TextBlock Text="📡" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="TreeSize Free" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Phân tích dung lượng ổ đĩa" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="TreeSize Free" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Phân tích dung lượng ổ đĩa" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkTreeSize" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -127,8 +127,8 @@
                                     <TextBlock Text="🧹" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="CCleaner" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Dọn dẹp hệ thống" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="CCleaner" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Dọn dẹp hệ thống" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkCCleaner" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -143,8 +143,8 @@
                                     <TextBlock Text="🖨" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="NAPS2" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Scan &amp; chuyển đổi PDF" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="NAPS2" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Scan &amp; chuyển đổi PDF" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkNaps2" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -159,8 +159,8 @@
                                     <TextBlock Text="📄" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Foxit Reader" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Đọc &amp; chú thích PDF" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Foxit Reader" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Đọc &amp; chú thích PDF" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkFoxitReader" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -179,8 +179,8 @@
                                     <TextBlock Text="🌐" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Google Chrome" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Trình duyệt web" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Google Chrome" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Trình duyệt web" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkChrome" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="True" VerticalAlignment="Top"/>
@@ -195,8 +195,8 @@
                                     <TextBlock Text="🦊" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Firefox" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Trình duyệt mã nguồn mở" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Firefox" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Trình duyệt mã nguồn mở" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkFirefox" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -211,8 +211,8 @@
                                     <TextBlock Text="🌊" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Brave" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Bảo mật &amp; chặn quảng cáo" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Brave" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Bảo mật &amp; chặn quảng cáo" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkBrave" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -231,8 +231,8 @@
                                     <TextBlock Text="💻" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="VS Code" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Code editor" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="VS Code" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Code editor" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkVSCode" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="True" VerticalAlignment="Top"/>
@@ -247,8 +247,8 @@
                                     <TextBlock Text="🐙" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Git" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Quản lý version" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Git" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Quản lý version" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkGit" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="True" VerticalAlignment="Top"/>
@@ -263,8 +263,8 @@
                                     <TextBlock Text="🐍" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Python 3" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Ngôn ngữ lập trình" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Python 3" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Ngôn ngữ lập trình" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkPython" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -283,8 +283,8 @@
                                     <TextBlock Text="🖥" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="AnyDesk" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Remote desktop" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="AnyDesk" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Remote desktop" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkAnyDesk" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -299,8 +299,8 @@
                                     <TextBlock Text="📡" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="TeamViewer" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Hỗ trợ từ xa" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="TeamViewer" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Hỗ trợ từ xa" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkTeamViewer" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -315,8 +315,8 @@
                                     <TextBlock Text="🔑" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="PuTTY" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="SSH client" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="PuTTY" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="SSH client" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkPuTTY" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -334,8 +334,8 @@
                                     <TextBlock Text="📊" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="WPS Office" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Thay thế MS Office miễn phí" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="WPS Office" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Thay thế MS Office miễn phí" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkWPS" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -348,8 +348,8 @@
                                     <TextBlock Text="📝" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="LibreOffice" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Bộ office mã nguồn mở" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="LibreOffice" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Bộ office mã nguồn mở" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkLibreOffice" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -362,8 +362,8 @@
                                     <TextBlock Text="🗂" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="OnlyOffice" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Tương thích .docx/.xlsx tốt" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="OnlyOffice" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Tương thích .docx/.xlsx tốt" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkOnlyOffice" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -381,8 +381,8 @@
                                     <TextBlock Text="📕" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Adobe Acrobat Reader" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Đọc PDF chuẩn nhất" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Adobe Acrobat Reader" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Đọc PDF chuẩn nhất" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkAdobeReader" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -395,8 +395,8 @@
                                     <TextBlock Text="📄" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Sumatra PDF" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Nhẹ &amp; nhanh" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Sumatra PDF" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Nhẹ &amp; nhanh" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkSumatraPDF" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -409,8 +409,8 @@
                                     <TextBlock Text="🖨" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="PDF24" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Tạo / merge / chỉnh PDF" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="PDF24" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Tạo / merge / chỉnh PDF" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkPDF24" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -428,8 +428,8 @@
                                     <TextBlock Text="📹" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Zoom" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Họp video" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Zoom" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Họp video" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkZoom" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -442,8 +442,8 @@
                                     <TextBlock Text="👥" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Microsoft Teams" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Cộng tác nhóm" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Microsoft Teams" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Cộng tác nhóm" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkTeams" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -456,8 +456,8 @@
                                     <TextBlock Text="📞" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Skype" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Gọi video" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Skype" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Gọi video" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkSkype" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -470,8 +470,8 @@
                                     <TextBlock Text="💬" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Slack" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Chat nhóm" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Slack" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Chat nhóm" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkSlack" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -484,8 +484,8 @@
                                     <TextBlock Text="✈" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Telegram" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Nhắn tin &amp; kênh" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Telegram" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Nhắn tin &amp; kênh" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkTelegram" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -503,8 +503,8 @@
                                     <TextBlock Text="📧" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Thunderbird" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Email client mã nguồn mở" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Thunderbird" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Email client mã nguồn mở" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkThunderbird" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -517,8 +517,8 @@
                                     <TextBlock Text="☁" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Google Drive" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Đồng bộ Google Drive" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Google Drive" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Đồng bộ Google Drive" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkGoogleDrive" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -531,8 +531,8 @@
                                     <TextBlock Text="📦" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Dropbox" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Lưu trữ đám mây" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="Dropbox" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Lưu trữ đám mây" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkDropbox" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -545,8 +545,8 @@
                                     <TextBlock Text="🔷" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="OneDrive" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Đồng bộ Microsoft OneDrive" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="OneDrive" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Đồng bộ Microsoft OneDrive" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkOneDrive" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -564,8 +564,8 @@
                                     <TextBlock Text="🎬" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="VLC Media Player" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Xem video mọi định dạng" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="VLC Media Player" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Xem video mọi định dạng" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkVLC" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -578,8 +578,8 @@
                                     <TextBlock Text="📷" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="ShareX" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                                    <TextBlock Text="Chụp màn hình chuyên nghiệp" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                                    <TextBlock Text="ShareX" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                                    <TextBlock Text="Chụp màn hình chuyên nghiệp" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                                 </StackPanel>
                             </StackPanel>
                             <CheckBox x:Name="ChkShareX" Grid.Column="1" Style="{StaticResource AppCheck}" IsChecked="False" VerticalAlignment="Top"/>
@@ -591,8 +591,8 @@
         </ScrollViewer>
 
         <!-- BOTTOM ACTION BAR -->
-        <Border Grid.Row="2" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,16">
+        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,16">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -601,7 +601,7 @@
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
                         <TextBlock x:Name="TxtStatus" Text="Chọn phần mềm và nhấn Cài đặt"
-                                   Foreground="{StaticResource BrushMuted}" FontSize="13"/>
+                                   Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
                         <TextBlock x:Name="TxtCount" Text="" Foreground="#3B82F6" FontSize="13" Margin="8,0,0,0"/>
                     </StackPanel>
                     <ProgressBar x:Name="ProgressInstall" Width="320" HorizontalAlignment="Left"

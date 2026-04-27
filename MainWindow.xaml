@@ -6,7 +6,7 @@
         Width="1200" Height="740"
         MinWidth="900" MinHeight="600"
         WindowStartupLocation="CenterScreen"
-        Background="#FFFFFF">
+        Background="{DynamicResource BrushSidebar}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,8 +17,8 @@
 
         <!-- ===== SIDEBAR ===== -->
         <Border x:Name="SidebarBorder"
-                Background="#FFFFFF"
-                BorderBrush="#E2E8F0"
+                Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}"
                 BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,14 +37,14 @@
                                        VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="TrickLor" Foreground="#0F172A"
+                            <TextBlock Text="TrickLor" Foreground="{DynamicResource BrushText}"
                                        FontSize="15" FontWeight="Bold"/>
                             <TextBlock Text="Pro" Foreground="#3B82F6"
                                        FontSize="15" FontWeight="Bold" Margin="-1,-5,0,0"/>
                         </StackPanel>
                     </StackPanel>
-                    <Border Background="#F1F5F9" CornerRadius="4" Padding="8,4" Margin="0,8,0,0">
-                        <TextBlock Foreground="#64748B" FontSize="10" FontWeight="SemiBold">
+                    <Border Background="{DynamicResource BrushSubtle}" CornerRadius="4" Padding="8,4" Margin="0,8,0,0">
+                        <TextBlock Foreground="{DynamicResource BrushMuted}" FontSize="10" FontWeight="SemiBold">
                             <Run Text="v1.0  "/>
                             <Run Text="●" Foreground="#22C55E"/>
                             <Run Text=" Đã kết nối"/>
@@ -54,12 +54,14 @@
 
                 <!-- Separator -->
                 <Rectangle Grid.Row="0" Height="1" VerticalAlignment="Bottom"
-                           Fill="#E2E8F0" Margin="0"/>
+                           Fill="{DynamicResource BrushBorder}" Margin="0"/>
 
                 <!-- Nav Items -->
-                <StackPanel Grid.Row="1" Margin="0,16,0,0">
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="0,16,0,0">
 
-                    <TextBlock Text="TỔNG QUAN" Foreground="#94A3B8"
+                    <TextBlock Text="TỔNG QUAN" Foreground="{DynamicResource BrushMuted}"
                                FontSize="10" FontWeight="SemiBold"
                                Margin="22,0,0,8"/>
 
@@ -75,16 +77,16 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="System Info"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Thông tin hệ thống"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
 
-                    <Rectangle Height="1" Fill="#E2E8F0" Margin="16,12"/>
+                    <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="16,12"/>
 
-                    <TextBlock Text="TÍNH NĂNG" Foreground="#94A3B8"
+                    <TextBlock Text="TÍNH NĂNG" Foreground="{DynamicResource BrushMuted}"
                                FontSize="10" FontWeight="SemiBold"
                                Margin="22,0,0,8"/>
 
@@ -101,9 +103,9 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock x:Name="TxtDeploy" Text="Deploy"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Cài phần mềm"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
@@ -121,9 +123,9 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Optimize"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Tối ưu hệ thống"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
@@ -141,9 +143,9 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Network Fix"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Sửa lỗi mạng"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
@@ -161,9 +163,29 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Security"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Cấu hình bảo mật"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Debloat -->
+                    <Button x:Name="BtnNavDebloat"
+                            Style="{StaticResource NavBtn}"
+                            Click="Debloat_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="28" Height="28" CornerRadius="7"
+                                    Background="#FFFCE4EC" Margin="0,0,12,0">
+                                <TextBlock Text="🧹" FontSize="13"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Debloat"
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                <TextBlock Text="Gỡ ứng dụng thừa"
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
@@ -181,16 +203,16 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Thiết lập nhanh"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Tinh chỉnh hệ thống"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
 
-                    <Rectangle Height="1" Fill="#E2E8F0" Margin="16,16"/>
+                    <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="16,16"/>
 
-                    <TextBlock Text="CÔNG CỤ" Foreground="#94A3B8"
+                    <TextBlock Text="CÔNG CỤ" Foreground="{DynamicResource BrushMuted}"
                                FontSize="10" FontWeight="SemiBold"
                                Margin="22,0,0,8"/>
 
@@ -205,9 +227,9 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="BitLocker"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Mã hoá ổ đĩa"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
@@ -223,25 +245,58 @@
                             </Border>
                             <StackPanel VerticalAlignment="Center">
                                 <TextBlock Text="Activity Log"
-                                           Foreground="#1E293B" FontSize="13" FontWeight="Medium"/>
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="Lịch sử thao tác"
-                                           Foreground="#94A3B8" FontSize="10"/>
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Button>
+
+                    <!-- Settings -->
+                    <Button Style="{StaticResource NavBtn}" Click="Settings_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="28" Height="28" CornerRadius="7"
+                                    Background="#EFF6FF" Margin="0,0,12,0">
+                                <TextBlock Text="⚙" FontSize="13"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Cài đặt"
+                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                <TextBlock Text="Màu sắc &amp; giao diện"
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
                             </StackPanel>
                         </StackPanel>
                     </Button>
 
                 </StackPanel>
+                </ScrollViewer>
 
                 <!-- Bottom info -->
                 <Border x:Name="BottomCard"
                         Grid.Row="2" Margin="12,10,20,16" Padding="12"
-                        Background="#F8FAFC" CornerRadius="8"
-                        BorderBrush="#E2E8F0" BorderThickness="1">
+                        Background="{DynamicResource BrushCard}" CornerRadius="8"
+                        BorderBrush="{DynamicResource BrushBorder}" BorderThickness="1">
                     <StackPanel>
                         <TextBlock Text="💻  Máy chủ: localhost"
-                                   Foreground="#64748B" FontSize="11"/>
+                                   Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         <TextBlock Text="👤  Admin"
-                                   Foreground="#64748B" FontSize="11" Margin="0,4,0,0"/>
+                                   Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,4,0,0"/>
+                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,10,0,10"/>
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock x:Name="TxtThemeIcon" Text="🌙"
+                                           FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <TextBlock x:Name="TxtThemeLabel" Text="Giao diện tối"
+                                           Foreground="{DynamicResource BrushMuted}" FontSize="11"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <CheckBox x:Name="ChkDarkMode"
+                                      Style="{StaticResource ToggleSwitch}"
+                                      HorizontalAlignment="Right" VerticalAlignment="Center"
+                                      Checked="DarkMode_Changed" Unchecked="DarkMode_Changed"/>
+                        </Grid>
                     </StackPanel>
                 </Border>
 
@@ -253,7 +308,7 @@
                x:FieldModifier="public"
                Grid.Column="1"
                NavigationUIVisibility="Hidden"
-               Background="#FFFFFF" Margin="0,0,10,0" Grid.ColumnSpan="2"/>
+               Background="{DynamicResource BrushBg}" Margin="0,0,10,0" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

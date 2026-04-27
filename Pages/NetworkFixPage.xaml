@@ -1,7 +1,7 @@
 <Page x:Class="WinDeployPro.Pages.NetworkFixPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{StaticResource BrushBg}">
+      Background="{DynamicResource BrushBg}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -11,8 +11,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -40,25 +40,25 @@
                 <UniformGrid Columns="4" Margin="0,0,0,28">
                     <Border Style="{StaticResource CardSmall}" Margin="0,0,12,0">
                         <StackPanel>
-                            <TextBlock Text="🌐  IP Address" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="🌐  IP Address" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
                             <TextBlock x:Name="TxtIP" Text="Đang lấy..." Foreground="#3B82F6" FontSize="15" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource CardSmall}" Margin="0,0,12,0">
                         <StackPanel>
-                            <TextBlock Text="🔀  Gateway" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="🔀  Gateway" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
                             <TextBlock x:Name="TxtGW" Text="Đang lấy..." Foreground="#22C55E" FontSize="15" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource CardSmall}" Margin="0,0,12,0">
                         <StackPanel>
-                            <TextBlock Text="📡  DNS Server" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="📡  DNS Server" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
                             <TextBlock x:Name="TxtDNS" Text="Đang lấy..." Foreground="#8B5CF6" FontSize="15" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource CardSmall}" Margin="0">
                         <StackPanel>
-                            <TextBlock Text="🌍  Internet" Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
+                            <TextBlock Text="🌍  Internet" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
                             <TextBlock x:Name="TxtInternet" Text="Kiểm tra..." Foreground="#F59E0B" FontSize="15" FontWeight="SemiBold"/>
                         </StackPanel>
                     </Border>
@@ -79,10 +79,10 @@
                             <TextBlock Text="🔌" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Reset Winsock" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Khởi tạo lại Windows Socket API — sửa lỗi kết nối TCP/IP" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Reset Winsock" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Khởi tạo lại Windows Socket API — sửa lỗi kết nối TCP/IP" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusWinsock" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusWinsock" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnWinsock" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixWinsock_Click"/>
                     </Grid>
@@ -100,10 +100,10 @@
                             <TextBlock Text="🌐" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Reset TCP/IP Stack" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Đặt lại toàn bộ cấu hình mạng TCP/IP về mặc định" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Reset TCP/IP Stack" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Đặt lại toàn bộ cấu hình mạng TCP/IP về mặc định" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusTCP" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusTCP" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnTCP" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixTCP_Click"/>
                     </Grid>
@@ -121,10 +121,10 @@
                             <TextBlock Text="🗑" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Flush DNS Cache" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Xoá cache DNS — sửa lỗi không phân giải tên miền" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Flush DNS Cache" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Xoá cache DNS — sửa lỗi không phân giải tên miền" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusDNS" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusDNS" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnDNS" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixDNS_Click"/>
                     </Grid>
@@ -142,10 +142,10 @@
                             <TextBlock Text="🔍" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Bật Network Discovery" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Cho phép máy tính hiện trong mạng nội bộ" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Bật Network Discovery" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Cho phép máy tính hiện trong mạng nội bộ" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusDiscovery" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusDiscovery" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnDiscovery" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixDiscovery_Click"/>
                     </Grid>
@@ -163,10 +163,10 @@
                             <TextBlock Text="📂" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Bật File &amp; Printer Sharing" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Mở Firewall cho chia sẻ file và máy in" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Bật File &amp; Printer Sharing" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Mở Firewall cho chia sẻ file và máy in" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusSharing" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusSharing" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnSharing" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixSharing_Click"/>
                     </Grid>
@@ -184,10 +184,10 @@
                             <TextBlock Text="🗂" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Bật SMBv2/v3" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Kích hoạt giao thức chia sẻ SMB an toàn" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Bật SMBv2/v3" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Kích hoạt giao thức chia sẻ SMB an toàn" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusSMB" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusSMB" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnSMB" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixSMB_Click"/>
                     </Grid>
@@ -205,10 +205,10 @@
                             <TextBlock Text="🔄" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                            <TextBlock Text="Khởi động lại dịch vụ mạng" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Restart Server + Workstation + Browser services" Foreground="{StaticResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Khởi động lại dịch vụ mạng" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Restart Server + Workstation + Browser services" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
-                        <TextBlock x:Name="StatusServices" Grid.Column="2" Text="●  Chờ" Foreground="{StaticResource BrushBorderLight}"
+                        <TextBlock x:Name="StatusServices" Grid.Column="2" Text="●  Chờ" Foreground="{DynamicResource BrushBorderLight}"
                                    FontSize="12" VerticalAlignment="Center" Margin="16,0"/>
                         <Button x:Name="BtnServices" Grid.Column="3" Style="{StaticResource BtnGhost}" Content="▶  Chạy" Click="FixServices_Click"/>
                     </Grid>
@@ -218,11 +218,11 @@
         </ScrollViewer>
 
         <!-- BOTTOM STATUS -->
-        <Border Grid.Row="2" Background="{StaticResource BrushSidebar}"
-                BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
+                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtNetStatus"
                        Text="Nhấn từng nút để sửa riêng, hoặc 'Fix tất cả' để chạy toàn bộ"
-                       Foreground="{StaticResource BrushMuted}" FontSize="13" VerticalAlignment="Center"/>
+                       Foreground="{DynamicResource BrushMuted}" FontSize="13" VerticalAlignment="Center"/>
         </Border>
 
     </Grid>

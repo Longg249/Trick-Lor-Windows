@@ -22,57 +22,67 @@ namespace WinDeployPro.Services
         {
             var result = new List<DriveInfo>();
 
-            // Dùng manage-bde để lấy thông tin từng ổ
-            var output = await RunAsync("manage-bde -status");
-
-            // Parse output thủ công
-            DriveInfo? current = null;
+            // Get-BitLockerVolume trả về object có tên field cố định, không phụ thuộc locale Windows
+            var output = await RunPSAsync(@"
+Get-BitLockerVolume -ErrorAction SilentlyContinue | ForEach-Object {
+    $letter = $_.MountPoint.TrimEnd('\').TrimEnd(':')
+    $status = $_.VolumeStatus.ToString()
+    $prot   = $_.ProtectionStatus.ToString()
+    $pct    = [int]$_.EncryptionPercentage
+    ""$letter|$status|$prot|$pct""
+}
+");
             foreach (var line in output.Split('\n'))
             {
                 var trimmed = line.Trim();
+                if (string.IsNullOrEmpty(trimmed)) continue;
+                var parts = trimmed.Split('|');
+                if (parts.Length < 4) continue;
 
-                // Phát hiện ổ đĩa mới: "Volume C:"
-                if (trimmed.StartsWith("Volume") && trimmed.Contains(":"))
+                var letter = parts[0].Trim();
+                if (string.IsNullOrEmpty(letter)) continue;
+
+                // Chuẩn hoá VolumeStatus → FullyEncrypted / FullyDecrypted / (in-progress)
+                var rawStatus = parts[1].Trim();
+                string status;
+                if (rawStatus.Equals("FullyEncrypted", StringComparison.OrdinalIgnoreCase) ||
+                    rawStatus.Equals("FullyEncryptedWipeOnly", StringComparison.OrdinalIgnoreCase))
+                    status = "FullyEncrypted";
+                else if (rawStatus.Equals("FullyDecrypted", StringComparison.OrdinalIgnoreCase))
+                    status = "FullyDecrypted";
+                else
+                    status = rawStatus; // EncryptionInProgress, DecryptionInProgress, etc.
+
+                var protection = parts[2].Trim() == "On" ? "Protection On" : "Protection Off";
+                int.TryParse(parts[3].Trim(), out var pct);
+
+                result.Add(new DriveInfo
                 {
-                    if (current != null) result.Add(current);
-                    current = new DriveInfo
+                    Letter = letter,
+                    Status = status,
+                    Protection = protection,
+                    Percentage = pct
+                });
+            }
+
+            // fallback: nếu Get-BitLockerVolume không trả gì (Home edition không có BitLocker)
+            // thì liệt kê các ổ đĩa fixed từ System.IO và đánh dấu Decrypted
+            if (result.Count == 0)
+            {
+                foreach (var d in System.IO.DriveInfo.GetDrives())
+                {
+                    if (d.DriveType != System.IO.DriveType.Fixed) continue;
+                    result.Add(new DriveInfo
                     {
-                        Letter = trimmed.Split(' ')[1].TrimEnd(':')
-                    };
-                }
-
-                if (current == null) continue;
-
-                if (trimmed.StartsWith("Conversion Status:"))
-                    current.Status = trimmed.Split(':')[1].Trim().Replace(" ", "");
-
-                if (trimmed.StartsWith("Protection Status:"))
-                    current.Protection = trimmed.Split(':')[1].Trim();
-
-                if (trimmed.StartsWith("Percentage Encrypted:"))
-                {
-                    var pct = trimmed.Split(':')[1].Trim().Replace("%", "");
-                    int.TryParse(pct, out var val);
-                    current.Percentage = val;
+                        Letter = d.Name.Substring(0, 1),
+                        Status = "FullyDecrypted",
+                        Protection = "Protection Off",
+                        Percentage = 0
+                    });
                 }
             }
 
-            if (current != null) result.Add(current);
-
             return result;
-        }
-
-        // ===== MÃ HOÁ Ổ ĐĨA =====
-        public static async Task EncryptAsync(string driveLetter, IProgress<string>? p = null)
-        {
-            p?.Report($"⏳ Đang bật BitLocker cho ổ {driveLetter}:...");
-
-            // Bật BitLocker với TPM (không cần password)
-            // Nếu máy không có TPM, dùng -rp để tạo recovery password
-            await RunAsync($"manage-bde -on {driveLetter}: -rp");
-
-            p?.Report($"✅ Đã bật BitLocker cho ổ {driveLetter}:");
-            p?.Report($"⚠  Lưu Recovery Key ở nơi an toàn!");
         }
 
         // ===== GIẢI MÃ Ổ ĐĨA =====
@@ -94,7 +104,10 @@ namespace WinDeployPro.Services
         public static async Task BackupRecoveryKeyAsync(string driveLetter, string outputPath, IProgress<string>? p = null)
         {
             p?.Report("⏳ Đang xuất Recovery Key...");
-            await RunAsync($"manage-bde -protectors -get {driveLetter}: > \"{outputPath}\"");
+            var escaped = outputPath.Replace("'", "''");
+            await RunPSAsync($@"
+manage-bde -protectors -get {driveLetter}: | Out-File -FilePath '{escaped}' -Encoding UTF8
+");
             p?.Report($"✅ Đã lưu Recovery Key tại: {outputPath}");
         }
 
@@ -114,7 +127,7 @@ namespace WinDeployPro.Services
             p?.Report($"✅ BitLocker ổ {driveLetter}: đã khôi phục");
         }
 
-        // ===== HELPER =====
+        // ===== HELPERS =====
         private static Task<string> RunAsync(string command) => Task.Run(() =>
         {
             var psi = new ProcessStartInfo("cmd.exe", $"/c {command}")
@@ -126,6 +139,24 @@ namespace WinDeployPro.Services
             };
             using var proc = Process.Start(psi)
                 ?? throw new Exception("Không thể chạy lệnh.");
+            var output = proc.StandardOutput.ReadToEnd();
+            proc.WaitForExit();
+            return output;
+        });
+
+        private static Task<string> RunPSAsync(string script) => Task.Run(() =>
+        {
+            var enc = Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(script));
+            var psi = new ProcessStartInfo("powershell.exe",
+                $"-NonInteractive -NoProfile -ExecutionPolicy Bypass -EncodedCommand {enc}")
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+            using var proc = Process.Start(psi)
+                ?? throw new Exception("Không thể chạy PowerShell.");
             var output = proc.StandardOutput.ReadToEnd();
             proc.WaitForExit();
             return output;

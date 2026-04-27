@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Media;
 
@@ -7,23 +8,26 @@ namespace WinDeployPro.Services
     {
         public static bool IsDark { get; private set; }
 
-            static ThemeService()
-            {
-                IsDark = SettingsService.IsDarkMode;
-            }
-
-            private static readonly (string Key, string Dark, string Light)[] Palette =
+        static ThemeService()
         {
-            ("BrushBg",          "#000000", "#F1F5F9"),
-            ("BrushSidebar",     "#0A0A0A", "#FFFFFF"),
-            ("BrushCard",        "#111111", "#FFFFFF"),
-            ("BrushCardHover",   "#1A1A1A", "#F8FAFC"),
-            ("BrushBorder",      "#222222", "#E2E8F0"),
-            ("BrushBorderLight", "#333333", "#CBD5E1"),
+            IsDark = SettingsService.IsDarkMode;
+        }
+
+        private static readonly (string Key, string Dark, string Light)[] Palette =
+        {
+            ("BrushBg",          "#0F172A", "#F8FAFC"),
+            ("BrushSidebar",     "#1E293B", "#FFFFFF"),
+            ("BrushCard",        "#1E2D3D", "#FFFFFF"),
+            ("BrushCardHover",   "#253649", "#F1F5F9"),
+            ("BrushBorder",      "#334155", "#E2E8F0"),
+            ("BrushBorderLight", "#475569", "#CBD5E1"),
             ("BrushText",        "#F1F5F9", "#0F172A"),
-            ("BrushMuted",       "#64748B", "#64748B"),
-            ("BrushSubtle",      "#2A2A2A", "#CBD5E1"),
+            ("BrushMuted",       "#94A3B8", "#64748B"),
+            ("BrushSubtle",      "#334155", "#E2E8F0"),
+            ("BrushNavHover",    "#253649", "#EFF6FF"),
         };
+
+        public static event Action<bool>? ThemeChanged;
 
         public static void Apply(bool dark)
         {
@@ -34,20 +38,28 @@ namespace WinDeployPro.Services
             foreach (var (key, darkHex, lightHex) in Palette)
             {
                 var hex = dark ? darkHex : lightHex;
-                // Replace with a NEW unfrozen brush — never mutate the existing one
-                res[key] = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString(hex));
+                res[key] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(hex));
             }
 
-            // Update Frame background
-            if (Application.Current.MainWindow is MainWindow mw)
-            {
-                var hex = dark ? "#000000" : "#F1F5F9";
-                mw.MainFrame.Background = new SolidColorBrush(
-                    (Color)ColorConverter.ConvertFromString(hex));
-            }
+            // Re-apply accent so it isn't overwritten by palette reset
+            var accent = SettingsService.AccentColor;
+            if (!string.IsNullOrEmpty(accent))
+                res["BrushAccentBlue"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString(accent));
+
+            ThemeChanged?.Invoke(dark);
         }
 
         public static void Toggle() => Apply(!IsDark);
+
+        public static void ApplyAccent(string hex)
+        {
+            try
+            {
+                var color = (Color)ColorConverter.ConvertFromString(hex);
+                Application.Current.Resources["BrushAccentBlue"] = new SolidColorBrush(color);
+                SettingsService.AccentColor = hex;
+            }
+            catch { }
+        }
     }
 }

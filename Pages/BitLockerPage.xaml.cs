@@ -22,6 +22,7 @@ namespace WinDeployPro.Pages
         public string ProgressColor { get; set; } = "#3B82F6";
         public string ActionLabel { get; set; } = "";
         public string ActionStyle { get; set; } = "";
+        public Visibility ActionVisible { get; set; } = Visibility.Visible;
         public string SuspendLabel { get; set; } = "";
         public Visibility SuspendVisible { get; set; } = Visibility.Collapsed;
         public Visibility EncryptedVisible { get; set; } = Visibility.Collapsed;
@@ -79,8 +80,7 @@ namespace WinDeployPro.Pages
                             vm.Percentage = 0;
                             vm.ProgressLabel = "0% — Không được bảo vệ";
                             vm.Icon = "🔓";
-                            vm.ActionLabel = "🔒  Mã hoá";
-                            vm.ActionStyle = "BtnGreen";
+                            vm.ActionVisible = Visibility.Collapsed;
                             vm.SuspendVisible = Visibility.Collapsed;
                             vm.EncryptedVisible = Visibility.Collapsed;
                             break;
@@ -112,20 +112,15 @@ namespace WinDeployPro.Pages
             }
         }
 
-        // ===== ENCRYPT / DECRYPT =====
+        // ===== DECRYPT =====
         private async void Action_Click(object sender, RoutedEventArgs e)
         {
             if (sender is not Button btn) return;
             var letter = btn.Tag?.ToString()?.Replace("Ổ ", "").Replace(":", "") ?? "";
 
-            // Xác nhận trước khi thực hiện
-            var action = btn.Content.ToString()!.Contains("Mã hoá") ? "mã hoá" : "giải mã";
             var confirm = MessageBox.Show(
-                $"Bạn có chắc muốn {action} ổ {letter}:?\n\n" +
-                (action == "mã hoá"
-                    ? "⚠  Hãy lưu Recovery Key sau khi mã hoá!"
-                    : "⚠  Dữ liệu sẽ không được bảo vệ sau khi giải mã."),
-                $"Xác nhận {action}",
+                $"Bạn có chắc muốn giải mã ổ {letter}:?\n\n⚠  Dữ liệu sẽ không được bảo vệ sau khi giải mã.",
+                "Xác nhận giải mã",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
 
@@ -136,12 +131,8 @@ namespace WinDeployPro.Pages
 
             try
             {
-                if (action == "mã hoá")
-                    await BitLockerService.EncryptAsync(letter, progress);
-                else
-                    await BitLockerService.DecryptAsync(letter, progress);
-
-                LogService.Add($"BitLocker: {action} ổ {letter}:");
+                await BitLockerService.DecryptAsync(letter, progress);
+                LogService.Add($"BitLocker: giải mã ổ {letter}:");
             }
             catch (Exception ex)
             {

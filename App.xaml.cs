@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Windows;
+using WinDeployPro.Services;
 
 namespace TrickLor
 {
@@ -29,6 +30,8 @@ namespace TrickLor
                 return;
             }
 
+            ThemeService.Apply(SettingsService.IsDarkMode);
+            ThemeService.ApplyAccent(SettingsService.AccentColor);
             base.OnStartup(e);
         }
 
