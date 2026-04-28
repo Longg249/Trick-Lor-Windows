@@ -1,8 +1,8 @@
 using System.Windows;
-using WinDeployPro.Pages;
-using WinDeployPro.Services;
+using TrickLor.Pages;
+using TrickLor.Services;
 
-namespace WinDeployPro
+namespace TrickLor
 {
     public partial class MainWindow : Window
     {

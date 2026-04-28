@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <RootNamespace>WinDeployPro</RootNamespace>
-    <AssemblyName>WinDeployPro</AssemblyName>
+    <RootNamespace>TrickLor</RootNamespace>
+    <AssemblyName>TrickLor</AssemblyName>
 
     <!-- ===== SINGLE FILE + SELF-CONTAINED ===== -->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>

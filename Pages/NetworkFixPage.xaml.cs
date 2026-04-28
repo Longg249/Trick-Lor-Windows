@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using WinDeployPro.Services;
+using TrickLor.Services;
 
-namespace WinDeployPro.Pages
+namespace TrickLor.Pages
 {
     public partial class NetworkFixPage : Page
     {

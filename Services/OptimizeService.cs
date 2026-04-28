@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace WinDeployPro.Services
+namespace TrickLor.Services
 {
     // ===== OPTIONS STRUCTS =====
     public record OptimizeOptions

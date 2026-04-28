@@ -44,7 +44,7 @@ dotnet run
 ### Chạy file thực thi
 
 ```
-WinDeployPro.exe   # Chạy với quyền Administrator
+TrickLor.exe   # Chạy với quyền Administrator
 ```
 
 > Ứng dụng tự động yêu cầu nâng quyền qua UAC khi khởi động.
@@ -98,7 +98,7 @@ TrickLor/
 
 - Mọi thao tác thay đổi hệ thống đều được ghi lại trong tab **Nhật ký**.
 - Module **Gỡ bloatware** tự tạo điểm khôi phục (System Restore Point) trước khi xóa.
-- Cài đặt giao diện (theme, accent color) được lưu tại `%AppData%\WinDeployPro\settings.json`.
+- Cài đặt giao diện (theme, accent color) được lưu tại `%AppData%\TrickLor\settings.json`.
 - Nên tạo bản sao lưu hoặc điểm khôi phục trước khi dùng các tính năng tối ưu hóa lần đầu.
 
 ---

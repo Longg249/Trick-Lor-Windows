@@ -1,10 +1,10 @@
 @echo off
 chcp 65001 > nul
-title WinDeployPro — Build EXE
+title TrickLor — Build EXE
 
 echo.
 echo ╔══════════════════════════════════════╗
-echo ║    WinDeployPro — Build Single EXE  ║
+echo ║    TrickLor — Build Single EXE  ║
 echo ╚══════════════════════════════════════╝
 echo.
 
@@ -17,7 +17,7 @@ if %errorlevel% neq 0 (
 )
 
 echo [1/3] Đang restore packages...
-dotnet restore WinDeployPro.csproj
+dotnet restore TrickLor.csproj
 if %errorlevel% neq 0 (
     echo [LỖI] Restore thất bại.
     pause
@@ -26,7 +26,7 @@ if %errorlevel% neq 0 (
 
 echo.
 echo [2/3] Đang build + đóng gói...
-dotnet publish WinDeployPro.csproj ^
+dotnet publish TrickLor.csproj ^
     -c Release ^
     -r win-x64 ^
     --self-contained true ^
@@ -45,7 +45,7 @@ echo.
 echo [3/3] Hoàn tất!
 echo.
 echo ✅ File EXE nằm tại:
-echo    bin\Release\net10.0-windows\win-x64\publish\WinDeployPro.exe
+echo    bin\Release\net10.0-windows\win-x64\publish\TrickLor.exe
 echo.
 
 :: Mở thư mục output tự động

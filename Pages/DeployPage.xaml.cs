@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using WinDeployPro.Services;
+using TrickLor.Services;
 
-namespace WinDeployPro.Pages
+namespace TrickLor.Pages
 {
     public partial class DeployPage : Page
     {

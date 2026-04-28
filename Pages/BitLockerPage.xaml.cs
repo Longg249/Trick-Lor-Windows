@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Win32;
-using WinDeployPro.Services;
+using TrickLor.Services;
 
-namespace WinDeployPro.Pages
+namespace TrickLor.Pages
 {
     // ViewModel cho từng ổ đĩa
     public class DriveViewModel

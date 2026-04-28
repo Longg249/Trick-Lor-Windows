@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace WinDeployPro.Services
+namespace TrickLor.Services
 {
     public static class SecurityService
     {

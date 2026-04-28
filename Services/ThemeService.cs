@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Media;
 
-namespace WinDeployPro.Services
+namespace TrickLor.Services
 {
     public static class ThemeService
     {

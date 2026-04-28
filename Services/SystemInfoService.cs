@@ -6,7 +6,7 @@ using System.Management;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace WinDeployPro.Services
+namespace TrickLor.Services
 {
     public record DiskInfo(string Drive, long TotalBytes, long FreeBytes)
     {

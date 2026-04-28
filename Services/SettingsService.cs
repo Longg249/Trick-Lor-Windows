@@ -1,13 +1,13 @@
 using System.IO;
 using System.Text.Json;
 
-namespace WinDeployPro.Services
+namespace TrickLor.Services
 {
     public static class SettingsService
     {
         private static readonly string AppDataDir = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "WinDeployPro");
+            "TrickLor");
 
         private static readonly string SettingsFile = Path.Combine(AppDataDir, "settings.json");
 

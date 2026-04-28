@@ -3,9 +3,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
-using WinDeployPro.Services;
+using TrickLor.Services;
 
-namespace WinDeployPro.Pages
+namespace TrickLor.Pages
 {
     public partial class SystemInfoPage : Page
     {

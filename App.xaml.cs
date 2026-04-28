@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Security.Principal;
 using System.Windows;
-using WinDeployPro.Services;
+using TrickLor.Services;
 
 namespace TrickLor
 {

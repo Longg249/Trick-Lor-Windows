@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace WinDeployPro.Services
+namespace TrickLor.Services
 {
     public class LogEntry
     {
