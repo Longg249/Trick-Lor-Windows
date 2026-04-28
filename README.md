@@ -1,8 +1,13 @@
-# TrickLor — Windows System Toolkit 100% Claudecode = ))
+# TrickLor — Windows System Toolkit (100% Claude code) = ))
 
+<img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/5f6cb593-b649-4095-bd87-fe4242da8acd" />
+
+<<<<<<< HEAD
 > **v2.0** — 8 tính năng mới: Startup Manager, Disk Cleaner, Driver Info, Process Manager, Backup & Restore, Scheduled Tasks, Windows Update Manager, Event Log Viewer
 
 <img width="261" height="193" alt="image" src="https://github.com/user-attachments/assets/e6581edf-0e7a-4d89-95a3-a1d4ca951242" />
+=======
+>>>>>>> d3a0b866ed83c8773f8607d6ed6a914a16f8612f
 
 
 Công cụ tối ưu hóa, bảo trì và triển khai Windows toàn diện, được xây dựng bằng WPF (.NET 10).
