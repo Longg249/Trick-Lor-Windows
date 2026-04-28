@@ -42,16 +42,24 @@ namespace TrickLor
             ThemeService.Apply(isDark);
         }
 
-        private void SysInfo_Click(object sender, RoutedEventArgs e)    => Navigate(new SystemInfoPage());
-        private void Deploy_Click(object sender, RoutedEventArgs e)    => Navigate(new DeployPage());
-        private void Debloat_Click(object sender, RoutedEventArgs e)   => Navigate(new DebloatPage());
-        private void Optimize_Click(object sender, RoutedEventArgs e)  => Navigate(new OptimizePage());
-        private void Network_Click(object sender, RoutedEventArgs e)   => Navigate(new NetworkFixPage());
-        private void Security_Click(object sender, RoutedEventArgs e)    => Navigate(new SecurityPage());
-        private void QuickSetup_Click(object sender, RoutedEventArgs e) => Navigate(new QuickSetupPage());
-        private void BitLocker_Click(object sender, RoutedEventArgs e)  => Navigate(new BitLockerPage());
-        private void Logs_Click(object sender, RoutedEventArgs e)      => Navigate(new LogPage());
-        private void Settings_Click(object sender, RoutedEventArgs e)  => Navigate(new SettingsPage());
+        private void SysInfo_Click(object sender, RoutedEventArgs e)       => Navigate(new SystemInfoPage());
+        private void Deploy_Click(object sender, RoutedEventArgs e)       => Navigate(new DeployPage());
+        private void Debloat_Click(object sender, RoutedEventArgs e)      => Navigate(new DebloatPage());
+        private void Optimize_Click(object sender, RoutedEventArgs e)     => Navigate(new OptimizePage());
+        private void Network_Click(object sender, RoutedEventArgs e)      => Navigate(new NetworkFixPage());
+        private void Security_Click(object sender, RoutedEventArgs e)     => Navigate(new SecurityPage());
+        private void QuickSetup_Click(object sender, RoutedEventArgs e)   => Navigate(new QuickSetupPage());
+        private void BitLocker_Click(object sender, RoutedEventArgs e)    => Navigate(new BitLockerPage());
+        private void StartupManager_Click(object sender, RoutedEventArgs e) => Navigate(new StartupManagerPage());
+        private void DiskCleaner_Click(object sender, RoutedEventArgs e)  => Navigate(new DiskCleanerPage());
+        private void DriverInfo_Click(object sender, RoutedEventArgs e)   => Navigate(new DriverPage());
+        private void ProcessManager_Click(object sender, RoutedEventArgs e) => Navigate(new ProcessManagerPage());
+        private void BackupRestore_Click(object sender, RoutedEventArgs e) => Navigate(new BackupRestorePage());
+        private void ScheduledTask_Click(object sender, RoutedEventArgs e) => Navigate(new ScheduledTaskPage());
+        private void WindowsUpdate_Click(object sender, RoutedEventArgs e) => Navigate(new WindowsUpdatePage());
+        private void EventLog_Click(object sender, RoutedEventArgs e)     => Navigate(new EventLogPage());
+        private void Logs_Click(object sender, RoutedEventArgs e)         => Navigate(new LogPage());
+        private void Settings_Click(object sender, RoutedEventArgs e)     => Navigate(new SettingsPage());
 
         private void Navigate(System.Windows.Controls.Page page)
         {
