@@ -3,14 +3,15 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using TrickLor.Services;
+using Windows.UI;
 
 namespace TrickLor.Pages
 {
-    public partial class NetworkFixPage : Page
+    public sealed partial class NetworkFixPage : Page
     {
         public NetworkFixPage()
         {
@@ -18,19 +19,22 @@ namespace TrickLor.Pages
             Loaded += (s, e) => LoadDiagnostics();
         }
 
-        // ===== DIAGNOSTICS =====
-
         private void LoadDiagnostics()
         {
             try
             {
-                TxtIP.Text       = GetLocalIP();
-                TxtGW.Text       = GetGateway();
-                TxtDNS.Text      = GetDNS();
-                TxtInternet.Text = CheckInternet() ? "✅ Kết nối OK" : "❌ Không có Internet";
-                TxtInternet.Foreground = CheckInternet()
-                    ? new SolidColorBrush(Color.FromRgb(34, 197, 94))
-                    : new SolidColorBrush(Color.FromRgb(239, 68, 68));
+                TxtIP.Text = GetLocalIP();
+                TxtGW.Text = GetGateway();
+                TxtDNS.Text = GetDNS();
+                bool ok = CheckInternet();
+                TxtInternet.Text = ok ? "✅ Kết nối OK" : "❌ Không có Internet";
+                TxtInternet.Foreground = ok
+                    ? new SolidColorBrush(Color.FromArgb(255, 34, 197, 94))
+                    : new SolidColorBrush(Color.FromArgb(255, 239, 68, 68));
+
+                // Đọc trạng thái mặc định cho hai tùy chọn bảo mật
+                ChkInsecureLogon.IsChecked = NetworkService.GetInsecureLogonEnabled();
+                ChkDigitalSign.IsChecked = NetworkService.GetDigitalSignEnabled();
             }
             catch
             {
@@ -40,7 +44,7 @@ namespace TrickLor.Pages
 
         private static string GetLocalIP()
         {
-            using var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0);
+            using var socket = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0);
             socket.Connect("8.8.8.8", 65530);
             return (socket.LocalEndPoint as IPEndPoint)?.Address.ToString() ?? "N/A";
         }
@@ -62,8 +66,7 @@ namespace TrickLor.Pages
             foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
             {
                 if (ni.OperationalStatus != OperationalStatus.Up) continue;
-                var dnsAddresses = ni.GetIPProperties().DnsAddresses;
-                foreach (var dns in dnsAddresses)
+                foreach (var dns in ni.GetIPProperties().DnsAddresses)
                     if (dns.AddressFamily == AddressFamily.InterNetwork)
                         return dns.ToString();
             }
@@ -87,37 +90,26 @@ namespace TrickLor.Pages
             LoadDiagnostics();
         }
 
-        // ===== INDIVIDUAL FIXES =====
-
         private async void FixWinsock_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnWinsock, StatusWinsock,
-                () => NetworkService.ResetWinsockAsync());
+            => await RunFix(BtnWinsock, StatusWinsock, () => NetworkService.ResetWinsockAsync());
 
         private async void FixTCP_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnTCP, StatusTCP,
-                () => NetworkService.ResetTCPAsync());
+            => await RunFix(BtnTCP, StatusTCP, () => NetworkService.ResetTCPAsync());
 
         private async void FixDNS_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnDNS, StatusDNS,
-                () => NetworkService.FlushDNSAsync());
+            => await RunFix(BtnDNS, StatusDNS, () => NetworkService.FlushDNSAsync());
 
         private async void FixDiscovery_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnDiscovery, StatusDiscovery,
-                () => NetworkService.EnableNetworkDiscoveryAsync());
+            => await RunFix(BtnDiscovery, StatusDiscovery, () => NetworkService.EnableNetworkDiscoveryAsync());
 
         private async void FixSharing_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnSharing, StatusSharing,
-                () => NetworkService.EnableFileSharingAsync());
+            => await RunFix(BtnSharing, StatusSharing, () => NetworkService.EnableFileSharingAsync());
 
         private async void FixSMB_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnSMB, StatusSMB,
-                () => NetworkService.EnableSMBAsync());
+            => await RunFix(BtnSMB, StatusSMB, () => NetworkService.EnableSMBAsync());
 
         private async void FixServices_Click(object sender, RoutedEventArgs e)
-            => await RunFix(BtnServices, StatusServices,
-                () => NetworkService.RestartNetworkServicesAsync());
-
-        // ===== FIX ALL =====
+            => await RunFix(BtnServices, StatusServices, () => NetworkService.RestartNetworkServicesAsync());
 
         private async void FixAll_Click(object sender, RoutedEventArgs e)
         {
@@ -129,30 +121,73 @@ namespace TrickLor.Pages
             LogService.Add("NetworkFix: Toàn bộ sửa lỗi hoàn tất");
         }
 
-        // ===== HELPER =====
-
         private async Task RunFix(Button btn, TextBlock status, Func<Task> action)
         {
             btn.IsEnabled = false;
             status.Text = "⏳ Đang chạy...";
-            status.Foreground = new SolidColorBrush(Color.FromRgb(245, 158, 11));
-            TxtNetStatus.Text = $"⏳ Đang chạy...";
+            status.Foreground = new SolidColorBrush(Color.FromArgb(255, 245, 158, 11));
+            TxtNetStatus.Text = "⏳ Đang chạy...";
 
             try
             {
                 await action();
                 status.Text = "✅ Xong";
-                status.Foreground = new SolidColorBrush(Color.FromRgb(34, 197, 94));
+                status.Foreground = new SolidColorBrush(Color.FromArgb(255, 34, 197, 94));
             }
             catch (Exception ex)
             {
                 status.Text = "❌ Lỗi";
-                status.Foreground = new SolidColorBrush(Color.FromRgb(239, 68, 68));
+                status.Foreground = new SolidColorBrush(Color.FromArgb(255, 239, 68, 68));
                 TxtNetStatus.Text = $"❌ Lỗi: {ex.Message}";
             }
             finally
             {
                 btn.IsEnabled = true;
+            }
+        }
+
+        // ===== HAI TÙY CHỌN BẢO MẬT MẠNG MỚI =====
+        private async void ApplyInsecureLogon_Click(object sender, RoutedEventArgs e)
+        {
+            BtnApplyInsecure.IsEnabled = false;
+            bool enable = ChkInsecureLogon.IsChecked == true;
+            try
+            {
+                await NetworkService.SetInsecureLogonAsync(enable);
+                TxtNetStatus.Text = enable ?
+                    "✅ Đã bật Allow insecure logon." :
+                    "✅ Đã tắt Allow insecure logon.";
+                LogService.Add($"NetworkFix: Allow insecure logon = {enable}");
+            }
+            catch (Exception ex)
+            {
+                TxtNetStatus.Text = $"❌ Lỗi: {ex.Message}";
+            }
+            finally
+            {
+                BtnApplyInsecure.IsEnabled = true;
+            }
+        }
+
+        private async void ApplyDigitalSign_Click(object sender, RoutedEventArgs e)
+        {
+            BtnApplyDigitalSign.IsEnabled = false;
+            bool enable = ChkDigitalSign.IsChecked == true;
+            try
+            {
+                await NetworkService.SetDigitalSignCommunicationAsync(enable);
+                TxtNetStatus.Text = enable ?
+                    "✅ Đã bật Digital sign communication (always)." :
+                    "✅ Đã tắt Digital sign communication.";
+                LogService.Add($"NetworkFix: Digital sign communication (always) = {enable}");
+            }
+            catch (Exception ex)
+            {
+                TxtNetStatus.Text = $"❌ Lỗi: {ex.Message}";
+            }
+            finally
+            {
+                BtnApplyDigitalSign.IsEnabled = true;
             }
         }
     }

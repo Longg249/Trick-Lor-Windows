@@ -1,11 +1,12 @@
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using TrickLor.Services;
+using Windows.UI;
 
 namespace TrickLor.Pages
 {
-    public partial class WindowsUpdatePage : Page
+    public sealed partial class WindowsUpdatePage : Page
     {
         public WindowsUpdatePage() => InitializeComponent();
 
@@ -19,14 +20,14 @@ namespace TrickLor.Pages
                 TxtStatusIcon.Text   = "⏸";
                 TxtUpdateStatus.Text = "Cập nhật đang bị tạm dừng";
                 TxtUpdateDesc.Text   = "Windows sẽ không tự động tải và cài bản cập nhật";
-                StatusCard.Background = new SolidColorBrush(Color.FromRgb(0xFF, 0xF7, 0xED));
+                StatusCard.Background = new SolidColorBrush(Color.FromArgb(255, 0xFF, 0xF7, 0xED));
             }
             else
             {
                 TxtStatusIcon.Text   = "✅";
                 TxtUpdateStatus.Text = "Cập nhật đang hoạt động bình thường";
                 TxtUpdateDesc.Text   = "Windows có thể tự động tải và cài bản cập nhật";
-                StatusCard.Background = new SolidColorBrush(Color.FromRgb(0xF0, 0xFD, 0xF4));
+                StatusCard.Background = new SolidColorBrush(Color.FromArgb(255, 0xF0, 0xFD, 0xF4));
             }
         }
 
@@ -47,8 +48,6 @@ namespace TrickLor.Pages
         }
 
         private async void OpenSettings_Click(object sender, RoutedEventArgs e)
-        {
-            await WindowsUpdateService.OpenSettingsAsync();
-        }
+            => await WindowsUpdateService.OpenSettingsAsync();
     }
 }

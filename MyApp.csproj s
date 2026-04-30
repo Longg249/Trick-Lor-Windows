@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Required to satisfy PublishSingleFile check in Microsoft.WindowsAppSDK.SingleFile.targets -->
+	  <PublishSingleFile>true</PublishSingleFile>
+    <!-- Optional but commonly required when publishing single-file unpackaged apps -->
+    <WindowsPackageType>None</WindowsPackageType>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+  </PropertyGroup>
+
+  <!-- existing project contents continue... -->
+</Project>

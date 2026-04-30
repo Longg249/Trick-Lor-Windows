@@ -1,15 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using Microsoft.Win32;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using TrickLor.Helpers;
 using TrickLor.Services;
 
 namespace TrickLor.Pages
 {
-    // ViewModel cho từng ổ đĩa
     public class DriveViewModel
     {
         public string Letter { get; set; } = "";
@@ -28,7 +25,7 @@ namespace TrickLor.Pages
         public Visibility EncryptedVisible { get; set; } = Visibility.Collapsed;
     }
 
-    public partial class BitLockerPage : Page
+    public sealed partial class BitLockerPage : Page
     {
         public BitLockerPage()
         {
@@ -39,7 +36,6 @@ namespace TrickLor.Pages
         private void Refresh_Click(object sender, RoutedEventArgs e)
             => _ = LoadDrivesAsync();
 
-        // ===== LOAD DRIVES =====
         private async System.Threading.Tasks.Task LoadDrivesAsync()
         {
             TxtStatus.Text = "⏳ Đang kiểm tra BitLocker...";
@@ -66,8 +62,7 @@ namespace TrickLor.Pages
                             vm.Icon = "🔒";
                             vm.ActionLabel = "🔓  Giải mã";
                             vm.ActionStyle = "BtnRed";
-                            vm.SuspendLabel = d.Protection == "Protection On"
-                                               ? "⏸  Tạm dừng" : "▶  Tiếp tục";
+                            vm.SuspendLabel = d.Protection == "Protection On" ? "⏸  Tạm dừng" : "▶  Tiếp tục";
                             vm.SuspendVisible = Visibility.Visible;
                             vm.EncryptedVisible = Visibility.Visible;
                             break;
@@ -85,7 +80,7 @@ namespace TrickLor.Pages
                             vm.EncryptedVisible = Visibility.Collapsed;
                             break;
 
-                        default: // đang trong quá trình
+                        default:
                             vm.StatusLabel = "⟳ Đang xử lý";
                             vm.StatusBg = "#1A1A00";
                             vm.StatusFg = "#F59E0B";
@@ -112,19 +107,16 @@ namespace TrickLor.Pages
             }
         }
 
-        // ===== DECRYPT =====
         private async void Action_Click(object sender, RoutedEventArgs e)
         {
             if (sender is not Button btn) return;
             var letter = btn.Tag?.ToString()?.Replace("Ổ ", "").Replace(":", "") ?? "";
 
-            var confirm = MessageBox.Show(
-                $"Bạn có chắc muốn giải mã ổ {letter}:?\n\n⚠  Dữ liệu sẽ không được bảo vệ sau khi giải mã.",
+            bool confirmed = await DialogHelper.ConfirmAsync(
                 "Xác nhận giải mã",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Warning);
-
-            if (confirm != MessageBoxResult.Yes) return;
+                $"Bạn có chắc muốn giải mã ổ {letter}:?\n\n⚠  Dữ liệu sẽ không được bảo vệ sau khi giải mã.",
+                XamlRoot);
+            if (!confirmed) return;
 
             btn.IsEnabled = false;
             var progress = new Progress<string>(LogLine);
@@ -134,10 +126,7 @@ namespace TrickLor.Pages
                 await BitLockerService.DecryptAsync(letter, progress);
                 LogService.Add($"BitLocker: giải mã ổ {letter}:");
             }
-            catch (Exception ex)
-            {
-                LogLine($"❌ Lỗi: {ex.Message}");
-            }
+            catch (Exception ex) { LogLine($"❌ Lỗi: {ex.Message}"); }
             finally
             {
                 btn.IsEnabled = true;
@@ -145,7 +134,6 @@ namespace TrickLor.Pages
             }
         }
 
-        // ===== SUSPEND / RESUME =====
         private async void Suspend_Click(object sender, RoutedEventArgs e)
         {
             if (sender is not Button btn) return;
@@ -172,33 +160,24 @@ namespace TrickLor.Pages
             }
         }
 
-        // ===== BACKUP RECOVERY KEY =====
         private async void BackupKey_Click(object sender, RoutedEventArgs e)
         {
             if (sender is not Button btn) return;
             var letter = btn.Tag?.ToString()?.Replace("Ổ ", "").Replace(":", "") ?? "";
 
-            var dlg = new SaveFileDialog
-            {
-                Title = $"Lưu Recovery Key ổ {letter}:",
-                FileName = $"BitLocker_RecoveryKey_{letter}",
-                DefaultExt = ".txt",
-                Filter = "Text files (*.txt)|*.txt"
-            };
-
-            if (dlg.ShowDialog() != true) return;
+            var path = await DialogHelper.SaveTxtAsync($"BitLocker_RecoveryKey_{letter}");
+            if (path == null) return;
 
             var progress = new Progress<string>(LogLine);
-            await BitLockerService.BackupRecoveryKeyAsync(letter, dlg.FileName, progress);
-            LogService.Add($"BitLocker: Xuất Recovery Key ổ {letter}: → {dlg.FileName}");
+            await BitLockerService.BackupRecoveryKeyAsync(letter, path, progress);
+            LogService.Add($"BitLocker: Xuất Recovery Key ổ {letter}: → {path}");
         }
 
-        // ===== LOG HELPER =====
         private void LogLine(string msg)
         {
             var time = DateTime.Now.ToString("HH:mm:ss");
             LogBox.Text += $"[{time}] {msg}\n";
-            LogScroll.ScrollToBottom();
+            LogScroll.ChangeView(null, double.MaxValue, null);
         }
     }
 }

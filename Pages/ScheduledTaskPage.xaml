@@ -1,7 +1,12 @@
 <Page x:Class="TrickLor.Pages.ScheduledTaskPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{DynamicResource BrushBg}"
+      xmlns:local="using:TrickLor.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+      mc:Ignorable="d"
+      Background="{ThemeResource BrushBg}"
       Loaded="Page_Loaded">
 
     <Grid>
@@ -12,8 +17,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <StackPanel>
                 <TextBlock Style="{StaticResource PageTitle}" Text="🗓 Scheduled Tasks"/>
                 <TextBlock Style="{StaticResource PageSubtitle}"
@@ -32,7 +37,7 @@
 
                     <!-- Toolbar -->
                     <Border Grid.Row="0" Padding="16,12"
-                            BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1">
+                            BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,0,0,1">
                         <StackPanel Orientation="Horizontal">
                             <Button Content="↺  Làm mới" Style="{StaticResource BtnGhost}"
                                     Click="Refresh_Click" Margin="0,0,8,0"/>
@@ -48,34 +53,34 @@
                     <!-- Loading -->
                     <TextBlock x:Name="TxtLoading" Grid.Row="1" Text="⏳ Đang tải danh sách tác vụ..."
                                HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="{DynamicResource BrushMuted}" FontSize="14" Visibility="Collapsed"/>
+                               Foreground="{ThemeResource BrushMuted}" FontSize="14" Visibility="Collapsed"/>
 
                     <!-- DataGrid -->
-                    <DataGrid x:Name="DgTasks" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                    <controls:DataGrid x:Name="DgTasks" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
                               Background="Transparent" BorderThickness="0"
-                              RowBackground="{DynamicResource BrushBg}"
-                              AlternatingRowBackground="{DynamicResource BrushSubtle}"
+                              RowBackground="{ThemeResource BrushBg}"
+                              AlternatingRowBackground="{ThemeResource BrushSubtle}"
                               GridLinesVisibility="Horizontal"
-                              HorizontalGridLinesBrush="{DynamicResource BrushBorder}"
+                              HorizontalGridLinesBrush="{ThemeResource BrushBorder}"
                               HeadersVisibility="Column"
-                              CanUserReorderColumns="False" CanUserResizeRows="False"
-                              SelectionMode="Single" SelectionUnit="FullRow"
+                              CanUserReorderColumns="False"
+                              SelectionMode="Single"
                               FontSize="12" Visibility="Collapsed">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Tên tác vụ"     Binding="{Binding TaskName}" Width="350"/>
-                            <DataGridTextColumn Header="Lần chạy tiếp" Binding="{Binding NextRun}"  Width="180"/>
-                            <DataGridTextColumn Header="Trạng thái"    Binding="{Binding Status}"   Width="120"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <controls:DataGrid.Columns>
+                            <controls:DataGridTextColumn Header="Tên tác vụ"     Binding="{Binding TaskName}" Width="350"/>
+                            <controls:DataGridTextColumn Header="Lần chạy tiếp" Binding="{Binding NextRun}"  Width="180"/>
+                            <controls:DataGridTextColumn Header="Trạng thái"    Binding="{Binding Status}"   Width="120"/>
+                        </controls:DataGrid.Columns>
+                    </controls:DataGrid>
                 </Grid>
             </Border>
         </Grid>
 
         <!-- STATUS -->
-        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtStatus" Text="Đang tải..."
-                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
+                       Foreground="{ThemeResource BrushMuted}" FontSize="13"/>
         </Border>
     </Grid>
 </Page>

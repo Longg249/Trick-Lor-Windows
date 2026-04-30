@@ -1,12 +1,11 @@
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using TrickLor.Services;
 
 namespace TrickLor.Pages
 {
-    public partial class SettingsPage : Page
+    public sealed partial class SettingsPage : Page
     {
         private bool _loading = true;
 
@@ -18,7 +17,7 @@ namespace TrickLor.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             _loading = true;
-            ChkDarkMode.IsChecked = ThemeService.IsDark;
+            ChkDarkMode.IsOn = ThemeService.IsDark;
             var accent = SettingsService.AccentColor;
             TxtColorInput.Text = accent;
             RefreshCurrentSwatch(accent);
@@ -29,7 +28,7 @@ namespace TrickLor.Pages
         {
             try
             {
-                var brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(hex));
+                var brush = new SolidColorBrush(ThemeService.ParseColor(hex));
                 CurrentSwatch.Background = brush;
                 InputSwatch.Background   = brush;
                 TxtCurrentColor.Text     = hex.ToUpperInvariant();
@@ -44,7 +43,7 @@ namespace TrickLor.Pages
             if (!text.StartsWith('#')) text = "#" + text;
             if (text.Length == 7)
             {
-                try { InputSwatch.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(text)); }
+                try { InputSwatch.Background = new SolidColorBrush(ThemeService.ParseColor(text)); }
                 catch { }
             }
         }
@@ -55,7 +54,7 @@ namespace TrickLor.Pages
             if (!hex.StartsWith('#')) hex = "#" + hex;
             try
             {
-                ColorConverter.ConvertFromString(hex);
+                ThemeService.ParseColor(hex);
                 ThemeService.ApplyAccent(hex);
                 RefreshCurrentSwatch(hex);
                 TxtStatus.Text = $"✅ Đã áp dụng màu {hex}";
@@ -89,10 +88,10 @@ namespace TrickLor.Pages
             }
         }
 
-        private void DarkMode_Changed(object sender, RoutedEventArgs e)
+        private void DarkMode_Toggled(object sender, RoutedEventArgs e)
         {
             if (_loading) return;
-            bool isDark = ChkDarkMode.IsChecked == true;
+            bool isDark = ChkDarkMode.IsOn;
             ThemeService.Apply(isDark);
             TxtStatus.Text = isDark ? "✅ Đã bật giao diện tối" : "✅ Đã bật giao diện sáng";
         }

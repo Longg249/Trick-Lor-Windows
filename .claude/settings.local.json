@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet publish *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\HP\\\\Desktop\\\\TrickLor\\\\TrickLor\\\\bin\\\\Release\\\\net10.0-windows\\\\win-x64\\\\publish\" | Select-Object Name, @{n='Size\\(MB\\)';e={[math]::Round\\($_.Length/1MB,1\\)}})",
+      "PowerShell(Rename-Item *)"
+    ]
+  }
+}

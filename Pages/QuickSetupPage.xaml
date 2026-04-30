@@ -1,7 +1,11 @@
 <Page x:Class="TrickLor.Pages.QuickSetupPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{DynamicResource BrushBg}"
+      xmlns:local="using:TrickLor.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{ThemeResource BrushBg}"
       Loaded="Page_Loaded">
 
     <Grid>
@@ -12,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <StackPanel>
                 <TextBlock Style="{StaticResource PageTitle}" Text="⚡ Thiết lập nhanh"/>
                 <TextBlock Style="{StaticResource PageSubtitle}"
@@ -45,38 +49,38 @@
                                 <TextBlock Text="🗂" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Explorer &amp; Giao diện" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="File Explorer &amp; UI tweaks" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Explorer &amp; Giao diện" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="File Explorer &amp; UI tweaks" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Explorer mở This PC" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Hiện ổ đĩa thay vì Recent Files khi mở Explorer" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Explorer mở This PC" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Hiện ổ đĩa thay vì Recent Files khi mở Explorer" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkThisPC" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkThisPC" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Context Menu cổ điển (Win10)" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Khôi phục menu chuột phải đầy đủ trên Win 11" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Context Menu cổ điển (Win10)" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Khôi phục menu chuột phải đầy đủ trên Win 11" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkClassicMenu" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkClassicMenu" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Ẩn icon trên Taskbar" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Ẩn Meet Now, Task View, Windows Ink Workspace" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Ẩn icon trên Taskbar" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Ẩn Meet Now, Task View, Windows Ink Workspace" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkHideTaskbar" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkHideTaskbar" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button Style="{StaticResource BtnPrimary}"
@@ -93,38 +97,38 @@
                                 <TextBlock Text="⚙" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Hệ thống" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="System tweaks" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Hệ thống" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="System tweaks" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Kích hoạt Windows Photo Viewer" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Đặt lại trình xem ảnh cũ cho .jpg .png .bmp" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Kích hoạt Windows Photo Viewer" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Đặt lại trình xem ảnh cũ cho .jpg .png .bmp" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkPhotoViewer" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkPhotoViewer" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt tự động điều chỉnh độ sáng" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Vô hiệu Adaptive Brightness — giữ độ sáng cố định" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt tự động điều chỉnh độ sáng" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Vô hiệu Adaptive Brightness — giữ độ sáng cố định" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkAutoBrightness" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkAutoBrightness" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Xóa bàn phím ngôn ngữ khác" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Chỉ giữ lại bàn phím US (en-US)" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Xóa bàn phím ngôn ngữ khác" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Chỉ giữ lại bàn phím US (en-US)" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkRemoveKeyboard" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkRemoveKeyboard" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button Style="{StaticResource BtnGreen}"
@@ -142,19 +146,19 @@
                                 <TextBlock Text="👤" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Tài khoản cục bộ" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Đổi tên, mật khẩu và bật/tắt tài khoản Windows" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tài khoản cục bộ" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Đổi tên, mật khẩu và bật/tắt tài khoản Windows" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <!-- Current account info -->
-                        <Border Background="{DynamicResource BrushBg}" CornerRadius="8" Padding="14,10" Margin="0,0,0,20">
+                        <Border Background="{ThemeResource BrushBg}" CornerRadius="8" Padding="14,10" Margin="0,0,0,20">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Tài khoản đăng nhập: " Foreground="{DynamicResource BrushMuted}" FontSize="12" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="TxtCurrentUser" Foreground="{DynamicResource BrushText}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center"/>
-                                <TextBlock Text="  ·  " Foreground="{DynamicResource BrushMuted}" FontSize="12" VerticalAlignment="Center"/>
+                                <TextBlock Text="Tài khoản đăng nhập: " Foreground="{ThemeResource BrushMuted}" FontSize="12" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TxtCurrentUser" Foreground="{ThemeResource BrushText}" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                <TextBlock Text="  ·  " Foreground="{ThemeResource BrushMuted}" FontSize="12" VerticalAlignment="Center"/>
                                 <Border x:Name="BadgeAccountType" Background="#EFF6FF" CornerRadius="4" Padding="8,3" VerticalAlignment="Center">
-                                    <TextBlock x:Name="TxtAccountType" Foreground="{DynamicResource BrushAccentBlue}" FontSize="11" FontWeight="SemiBold"/>
+                                    <TextBlock x:Name="TxtAccountType" Foreground="{ThemeResource BrushAccentBlue}" FontSize="11" FontWeight="SemiBold"/>
                                 </Border>
                             </StackPanel>
                         </Border>
@@ -169,8 +173,8 @@
 
                             <!-- Rename section -->
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="Đổi tên tài khoản" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                                <TextBlock Text="Tên mới" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                                <TextBlock Text="Đổi tên tài khoản" Foreground="{ThemeResource BrushText}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                                <TextBlock Text="Tên mới" Foreground="{ThemeResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
                                 <TextBox x:Name="TxtNewUsername" Style="{StaticResource InputBox}" Margin="0,0,0,12"/>
                                 <Button Style="{StaticResource BtnPrimary}"
                                         Content="✏  Đổi tên tài khoản"
@@ -180,11 +184,11 @@
 
                             <!-- Password section -->
                             <StackPanel Grid.Column="2">
-                                <TextBlock Text="Đổi mật khẩu" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                                <TextBlock Text="Mật khẩu mới" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
-                                <PasswordBox x:Name="PwdNew" Style="{StaticResource InputPasswordBox}" Margin="0,0,0,10"/>
-                                <TextBlock Text="Xác nhận mật khẩu" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
-                                <PasswordBox x:Name="PwdConfirm" Style="{StaticResource InputPasswordBox}" Margin="0,0,0,12"/>
+                                <TextBlock Text="Đổi mật khẩu" Foreground="{ThemeResource BrushText}" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                                <TextBlock Text="Mật khẩu mới" Foreground="{ThemeResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                                <PasswordBox x:Name="PwdNew" Margin="0,0,0,10"/>
+                                <TextBlock Text="Xác nhận mật khẩu" Foreground="{ThemeResource BrushMuted}" FontSize="11" Margin="0,0,0,6"/>
+                                <PasswordBox x:Name="PwdConfirm" Margin="0,0,0,12"/>
                                 <Button Style="{StaticResource BtnGreen}"
                                         Content="🔑  Đổi mật khẩu"
                                         Click="ChangePassword_Click"
@@ -193,7 +197,7 @@
                         </Grid>
 
                         <!-- Separator -->
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,20,0,20"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,20,0,20"/>
 
                         <!-- Built-in Administrator toggle -->
                         <Grid>
@@ -202,10 +206,10 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Kích hoạt tài khoản Administrator ẩn" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Bật tài khoản Administrator mặc định của Windows (bị ẩn theo mặc định)" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Kích hoạt tài khoản Administrator ẩn" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Bật tài khoản Administrator mặc định của Windows (bị ẩn theo mặc định)" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkEnableAdmin" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="ChkEnableAdmin" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button Style="{StaticResource BtnOrange}"
@@ -223,8 +227,8 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="Áp dụng tất cả thiết lập đã chọn" Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
-                            <TextBlock Text="Chạy toàn bộ các mục đang bật cùng lúc" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                            <TextBlock Text="Áp dụng tất cả thiết lập đã chọn" Foreground="{ThemeResource BrushText}" FontSize="13" FontWeight="SemiBold"/>
+                            <TextBlock Text="Chạy toàn bộ các mục đang bật cùng lúc" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                         </StackPanel>
                         <Button x:Name="BtnApplyQuick" Grid.Column="1" Style="{StaticResource BtnPrimary}"
                                 Content="▶  Áp dụng tất cả"
@@ -236,11 +240,11 @@
         </ScrollViewer>
 
         <!-- BOTTOM STATUS -->
-        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtQuickStatus"
                        Text="Chọn các tùy chọn và nhấn Áp dụng"
-                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
+                       Foreground="{ThemeResource BrushMuted}" FontSize="13"/>
         </Border>
     </Grid>
 </Page>

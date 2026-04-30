@@ -1,7 +1,11 @@
 <Page x:Class="TrickLor.Pages.BackupRestorePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{DynamicResource BrushBg}"
+      xmlns:local="using:TrickLor.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{ThemeResource BrushBg}"
       Loaded="Page_Loaded">
 
     <Grid>
@@ -12,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <StackPanel>
                 <TextBlock Style="{StaticResource PageTitle}" Text="💾 Backup &amp; Restore"/>
                 <TextBlock Style="{StaticResource PageSubtitle}"
@@ -38,14 +42,14 @@
                                 <TextBlock Text="📤" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Xuất cài đặt" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Export settings.json ra file ngoài" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Xuất cài đặt" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Export settings.json ra file ngoài" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
-                        <TextBlock Text="Vị trí file nguồn:" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,4"/>
-                        <Border Background="{DynamicResource BrushSubtle}" CornerRadius="6" Padding="10,8">
-                            <TextBlock x:Name="TxtSettingsPath" Foreground="{DynamicResource BrushText}" FontSize="11"
+                        <TextBlock Text="Vị trí file nguồn:" Foreground="{ThemeResource BrushMuted}" FontSize="11" Margin="0,0,0,4"/>
+                        <Border Background="{ThemeResource BrushSubtle}" CornerRadius="6" Padding="10,8">
+                            <TextBlock x:Name="TxtSettingsPath" Foreground="{ThemeResource BrushText}" FontSize="11"
                                        TextWrapping="Wrap" FontFamily="Consolas"/>
                         </Border>
 
@@ -65,19 +69,19 @@
                                 <TextBlock Text="📥" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Nhập cài đặt" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Import file settings.json đã xuất trước" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Nhập cài đặt" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Import file settings.json đã xuất trước" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
-                        <TextBlock Text="Lưu ý:" Foreground="{DynamicResource BrushMuted}" FontSize="11" FontWeight="SemiBold" Margin="0,0,0,4"/>
-                        <TextBlock Foreground="{DynamicResource BrushMuted}" FontSize="12" TextWrapping="Wrap">
+                        <TextBlock Text="Lưu ý:" Foreground="{ThemeResource BrushMuted}" FontSize="11" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock Foreground="{ThemeResource BrushMuted}" FontSize="12" TextWrapping="Wrap">
                             Nhập cài đặt sẽ ghi đè cài đặt hiện tại. Khởi động lại ứng dụng để áp dụng.
                         </TextBlock>
 
-                        <Border Background="{DynamicResource BrushSubtle}" CornerRadius="6" Padding="10,8" Margin="0,12,0,0">
+                        <Border Background="{ThemeResource BrushSubtle}" CornerRadius="6" Padding="10,8" Margin="0,12,0,0">
                             <TextBlock x:Name="TxtImportPath" Text="Chưa chọn file"
-                                       Foreground="{DynamicResource BrushMuted}" FontSize="11"
+                                       Foreground="{ThemeResource BrushMuted}" FontSize="11"
                                        FontFamily="Consolas" TextWrapping="Wrap"/>
                         </Border>
 
@@ -93,10 +97,10 @@
         </ScrollViewer>
 
         <!-- STATUS -->
-        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtStatus" Text="Sẵn sàng"
-                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
+                       Foreground="{ThemeResource BrushMuted}" FontSize="13"/>
         </Border>
     </Grid>
 </Page>
