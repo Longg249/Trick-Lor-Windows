@@ -1,5 +1,5 @@
 # TrickLor — Windows System Toolkit (100% AI code) = ))
-(Sponsored by Claude Code + DeepSeek)
+#### (Sponsored by Claude Code + DeepSeek)
 
 <img width="2560" height="1600" alt="image" src="https://github.com/user-attachments/assets/5f6cb593-b649-4095-bd87-fe4242da8acd" />
 
