@@ -3,6 +3,64 @@
 Tất cả thay đổi đáng chú ý của dự án được ghi lại tại đây.
 
 ---
+# Changelog — TrickLor **(Update UI mới - WINUI3)**
+
+Tất cả thay đổi đáng chú ý của dự án được ghi lại tại đây.
+
+## [3.0] — 2026-04-30
+
+### Added
+- **Office Install** – Cài đặt Microsoft Office trực tiếp từ script `setup.installoffice.org` (yêu cầu quyền Admin).
+- **Quản lý tài khoản local** trong *Quick Setup*:
+  - Đổi tên người dùng hiện tại (`Rename-LocalUser`)
+  - Đổi mật khẩu tài khoản (hỗ trợ ký tự đặc biệt qua mã hóa Base64)
+  - Bật / tắt tài khoản Administrator ẩn
+- **Tùy chỉnh bảo mật mạng** trong *Network Fix*:
+  - Cho phép guest logon không an toàn (`AllowInsecureGuestAuth`)
+  - Yêu cầu chữ ký số cho giao tiếp SMB (`RequireSecuritySignature`)
+- **Quản lý thông báo & cảnh báo** trong *Security*:
+  - Bật / tắt Toast notifications
+  - Bật / tắt cảnh báo bảo mật trên Action Center (`HideSCAHealth`)
+- **Tối ưu quyền riêng tư nâng cao** trong *Optimize*:
+  - Tắt Telemetry, Cortana, Advertising ID, Activity History
+- **Dọn dẹp lưu trữ thông minh** trong *Optimize*:
+  - Xoá Temp files, dọn Recycle Bin, tắt chế độ ngủ đông (Hibernation)
+- **Tùy chỉnh khởi động** trong *Optimize*:
+  - Bật Fast Startup, tắt Xbox Game Bar, Flush DNS
+- **Quản lý ngôn ngữ & độ sáng** trong *Quick Setup*:
+  - Xoá các bàn phím ngôn ngữ khác (chỉ giữ US)
+  - Bật / tắt tự động điều chỉnh độ sáng màn hình
+- **BitLocker nâng cao**:
+  - Tạm dừng / khôi phục bảo vệ (dùng khi cập nhật firmware)
+  - Sao lưu Recovery Key ra file
+  - Hiển thị chi tiết tiến độ mã hoá/giải mã
+- **Debloat mở rộng**:
+  - Tắt Teams Chat trên taskbar
+  - Tắt Widgets
+  - Tắt Bing Search trong Start Menu
+
+### Changed
+- **QuickSetup** – Tích hợp đầy đủ các tuỳ chỉnh Explorer (mở This PC, context menu cổ điển, Windows Photo Viewer, ẩn icon taskbar không cần thiết).
+- **Network Fix** – Gộp các lệnh sửa lỗi (Winsock, TCP, DNS, Network Discovery, File Sharing, SMBv2, khởi động lại dịch vụ) thành một nút "Fix All" có báo tiến trình.
+- **Security** – Đồng bộ trạng thái UAC, SmartScreen, Firewall với registry thực tế.
+- **Theme** – Tách biệt màu nền `BrushBg` (đen tuyền cho dark mode, trắng xám cho light mode), cải thiện tương phản.
+- **Log Service** – Chuyển sang lưu danh sách trong bộ nhớ, không còn ghi file log thô.
+- **Settings** – Lưu màu accent và chế độ sáng/tối vào `%AppData%\TrickLor\settings.json` (thay vì file riêng rẽ).
+
+### Fixed
+- **BitLocker** – Xử lý đúng trạng thái `FullyEncryptedWipeOnly` và các ổ đĩa không có BitLocker trên Windows Home.
+- **Event Log Viewer** – Giới hạn đúng 300 mục gần nhất, lọc chính xác lỗi/cảnh báo.
+- **Process Manager** – Hiển thị đúng dung lượng RAM (MB), không bị lỗi khi process đã kết thúc.
+- **Scheduled Tasks** – Parse CSV đầu ra của `schtasks /query` một cách chính xác (hỗ trợ dấu phẩy trong tên tác vụ).
+- **Driver Info** – Bỏ qua các driver có tên rỗng, sắp xếp theo tên thiết bị.
+- **Disk Cleaner** – Thêm `net stop wuauserv` trước khi xoá Windows Update cache để tránh lỗi file đang dùng.
+- **App.xaml.cs** – Bắt exception toàn cục và ghi log vào `C:\crash.txt` để dễ dàng debug.
+
+### Performance
+- **WMI queries** (Driver, System Info) chạy bất đồng bộ, không làm đơ giao diện.
+- **PowerShell commands** được chạy với `-NonInteractive -NoProfile` để tăng tốc.
+- **MainWindow** – Trì hoãn navigation lần đầu đến khi cửa sổ hiển thị hoàn chỉnh (tránh giật layout).
+
 
 ## [v2.0] — 2026-04-28
 
