@@ -1,7 +1,11 @@
 <Page x:Class="TrickLor.Pages.SettingsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{DynamicResource BrushBg}"
+      xmlns:local="using:TrickLor.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{ThemeResource BrushBg}"
       Loaded="Page_Loaded">
 
     <Grid>
@@ -12,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <StackPanel>
                 <TextBlock Style="{StaticResource PageTitle}" Text="⚙ Cài đặt"/>
                 <TextBlock Style="{StaticResource PageSubtitle}"
@@ -34,8 +38,8 @@
                                 <TextBlock Text="🖥" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Chế độ hiển thị" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Bật / tắt giao diện tối cho toàn bộ ứng dụng" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Chế độ hiển thị" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Bật / tắt giao diện tối cho toàn bộ ứng dụng" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -45,12 +49,13 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Giao diện tối" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Chuyển nền tối — giảm mỏi mắt trong môi trường tối" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Giao diện tối" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Chuyển nền tối — giảm mỏi mắt trong môi trường tối" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkDarkMode" Grid.Column="1" Style="{StaticResource ToggleSwitch}"
-                                      VerticalAlignment="Center"
-                                      Checked="DarkMode_Changed" Unchecked="DarkMode_Changed"/>
+                            <ToggleSwitch x:Name="ChkDarkMode" Grid.Column="1"
+                                         OnContent="" OffContent="" MinWidth="0"
+                                         VerticalAlignment="Center"
+                                         Toggled="DarkMode_Toggled"/>
                         </Grid>
                     </StackPanel>
                 </Border>
@@ -64,28 +69,28 @@
                                 <TextBlock Text="🎨" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Màu nhấn chủ đề" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Áp dụng cho nút, toggle, badge và các điểm nhấn trong UI" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Màu nhấn chủ đề" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Áp dụng cho nút, toggle, badge và các điểm nhấn trong UI" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <!-- Màu hiện tại -->
-                        <Border Background="{DynamicResource BrushBg}" CornerRadius="8"
+                        <Border Background="{ThemeResource BrushBg}" CornerRadius="8"
                                 Padding="16,12" Margin="0,0,0,20">
                             <StackPanel Orientation="Horizontal">
                                 <Border x:Name="CurrentSwatch" Width="44" Height="44"
                                         CornerRadius="12" Margin="0,0,16,0"/>
                                 <StackPanel VerticalAlignment="Center">
-                                    <TextBlock Text="Màu hiện tại" Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,0,0,4"/>
+                                    <TextBlock Text="Màu hiện tại" Foreground="{ThemeResource BrushMuted}" FontSize="11" Margin="0,0,0,4"/>
                                     <TextBlock x:Name="TxtCurrentColor" Text="#3B82F6"
-                                               Foreground="{DynamicResource BrushText}" FontSize="15"
+                                               Foreground="{ThemeResource BrushText}" FontSize="15"
                                                FontWeight="SemiBold" FontFamily="Consolas"/>
                                 </StackPanel>
                             </StackPanel>
                         </Border>
 
                         <!-- Input -->
-                        <TextBlock Text="Nhập mã màu HTML" Foreground="{DynamicResource BrushMuted}"
+                        <TextBlock Text="Nhập mã màu HTML" Foreground="{ThemeResource BrushMuted}"
                                    FontSize="11" FontWeight="SemiBold" Margin="0,0,0,6"/>
                         <Grid Margin="0,0,0,24">
                             <Grid.ColumnDefinitions>
@@ -109,46 +114,58 @@
                         </Grid>
 
                         <!-- Presets -->
-                        <TextBlock Text="Màu có sẵn" Foreground="{DynamicResource BrushMuted}"
+                        <TextBlock Text="Màu có sẵn" Foreground="{ThemeResource BrushMuted}"
                                    FontSize="11" FontWeight="SemiBold" Margin="0,0,0,10"/>
-                        <WrapPanel>
-                            <Button Tag="#3B82F6" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#3B82F6 — Blue">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Tag="#3B82F6" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#3B82F6 — Blue"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#3B82F6"/>
                             </Button>
-                            <Button Tag="#6366F1" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#6366F1 — Indigo">
+                            <Button Tag="#6366F1" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#6366F1 — Indigo"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#6366F1"/>
                             </Button>
-                            <Button Tag="#8B5CF6" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#8B5CF6 — Purple">
+                            <Button Tag="#8B5CF6" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#8B5CF6 — Purple"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#8B5CF6"/>
                             </Button>
-                            <Button Tag="#EC4899" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#EC4899 — Pink">
+                            <Button Tag="#EC4899" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#EC4899 — Pink"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#EC4899"/>
                             </Button>
-                            <Button Tag="#EF4444" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#EF4444 — Red">
+                            <Button Tag="#EF4444" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#EF4444 — Red"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#EF4444"/>
                             </Button>
-                            <Button Tag="#F97316" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#F97316 — Orange">
+                            <Button Tag="#F97316" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#F97316 — Orange"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#F97316"/>
                             </Button>
-                            <Button Tag="#F59E0B" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#F59E0B — Amber">
+                            <Button Tag="#F59E0B" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#F59E0B — Amber"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#F59E0B"/>
                             </Button>
-                            <Button Tag="#22C55E" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#22C55E — Green">
+                            <Button Tag="#22C55E" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#22C55E — Green"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#22C55E"/>
                             </Button>
-                            <Button Tag="#14B8A6" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#14B8A6 — Teal">
+                            <Button Tag="#14B8A6" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#14B8A6 — Teal"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#14B8A6"/>
                             </Button>
-                            <Button Tag="#06B6D4" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#06B6D4 — Cyan">
+                            <Button Tag="#06B6D4" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#06B6D4 — Cyan"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#06B6D4"/>
                             </Button>
-                            <Button Tag="#64748B" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#64748B — Slate">
+                            <Button Tag="#64748B" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#64748B — Slate"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#64748B"/>
                             </Button>
-                            <Button Tag="#0F172A" Style="{StaticResource SwatchBtn}" Click="Preset_Click" ToolTip="#0F172A — Dark">
+                            <Button Tag="#0F172A" Style="{StaticResource SwatchBtn}" Click="Preset_Click">
+                                <ToolTipService.ToolTip><ToolTip Content="#0F172A — Dark"/></ToolTipService.ToolTip>
                                 <Border Width="36" Height="36" CornerRadius="10" Background="#0F172A"/>
                             </Button>
-                        </WrapPanel>
+                        </StackPanel>
 
                     </StackPanel>
                 </Border>
@@ -157,10 +174,10 @@
         </ScrollViewer>
 
         <!-- BOTTOM STATUS -->
-        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtStatus" Text="Cài đặt được lưu tự động"
-                       Foreground="{DynamicResource BrushMuted}" FontSize="13"/>
+                       Foreground="{ThemeResource BrushMuted}" FontSize="13"/>
         </Border>
     </Grid>
 </Page>

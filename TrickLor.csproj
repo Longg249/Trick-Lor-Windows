@@ -2,25 +2,35 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
+    <UseWinUI>true</UseWinUI>
     <RootNamespace>TrickLor</RootNamespace>
     <AssemblyName>TrickLor</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
 
     <!-- ===== SINGLE FILE + SELF-CONTAINED ===== -->
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <SelfContained>true</SelfContained>
-    <PublishSingleFile>true</PublishSingleFile>
+    <PublishSingleFile>false</PublishSingleFile>
     <PublishTrimmed>false</PublishTrimmed>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
 
-    <!-- ===== UAC: yêu cầu quyền Admin ===== -->
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Bắt buộc cho single-file theo Windows App SDK -->
+    <EnableMsixTooling>true</EnableMsixTooling>
+    <WindowsPackageType>None</WindowsPackageType>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    <!-- Khuyến nghị nhưng không bắt buộc -->
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250228002" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.DataGrid" Version="7.1.2" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="10.0.7" />
     <PackageReference Include="System.Management" Version="8.0.0" />
   </ItemGroup>
 

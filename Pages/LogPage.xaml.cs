@@ -1,10 +1,10 @@
-using System.Windows;
-using System.Windows.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using TrickLor.Services;
 
 namespace TrickLor.Pages
 {
-    public partial class LogPage : Page
+    public sealed partial class LogPage : Page
     {
         public LogPage()
         {
@@ -17,7 +17,7 @@ namespace TrickLor.Pages
             LogList.ItemsSource = null;
             LogList.ItemsSource = LogService.Entries;
             TxtLogCount.Text = $"{LogService.Entries.Count} bản ghi";
-            LogScroll.ScrollToBottom();
+            LogScroll.ChangeView(null, double.MaxValue, null);
         }
 
         private void ClearLog_Click(object sender, RoutedEventArgs e)

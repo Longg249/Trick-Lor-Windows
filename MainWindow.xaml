@@ -1,24 +1,19 @@
-<Window x:Class="TrickLor.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Trick Lỏ Pro Vip
-        "
-        Width="1200" Height="740"
-        MinWidth="900" MinHeight="600"
-        WindowStartupLocation="CenterScreen"
-        Background="{DynamicResource BrushSidebar}">
+<Window
+    x:Class="TrickLor.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Trick Lỏ Pro Vip">
 
-    <Grid>
+    <Grid Background="{StaticResource BrushSidebar}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="71*"/>
-            <ColumnDefinition Width="174*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- ===== SIDEBAR ===== -->
         <Border x:Name="SidebarBorder"
-                Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}"
+                Background="{StaticResource BrushSidebar}"
+                BorderBrush="{StaticResource BrushBorder}"
                 BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,413 +32,306 @@
                                        VerticalAlignment="Center"/>
                         </Border>
                         <StackPanel VerticalAlignment="Center">
-                            <TextBlock Text="TrickLor" Foreground="{DynamicResource BrushText}"
+                            <TextBlock Text="TrickLor" Foreground="{StaticResource BrushText}"
                                        FontSize="15" FontWeight="Bold"/>
                             <TextBlock Text="Pro" Foreground="#3B82F6"
                                        FontSize="15" FontWeight="Bold" Margin="-1,-5,0,0"/>
                         </StackPanel>
                     </StackPanel>
-                    <Border Background="{DynamicResource BrushSubtle}" CornerRadius="4" Padding="8,4" Margin="0,8,0,0">
-                        <TextBlock Foreground="{DynamicResource BrushMuted}" FontSize="10" FontWeight="SemiBold">
-                            <Run Text="v2.0  "/>
-                            <Run Text="●" Foreground="#22C55E"/>
-                            <Run Text=" Đã kết nối"/>
-                        </TextBlock>
+                    <Border Background="{StaticResource BrushSubtle}" CornerRadius="4" Padding="8,4" Margin="0,8,0,0">
+                        <TextBlock Foreground="{StaticResource BrushMuted}" FontSize="10" FontWeight="SemiBold" Text="v3.0" />
                     </Border>
                 </StackPanel>
 
                 <!-- Separator -->
                 <Rectangle Grid.Row="0" Height="1" VerticalAlignment="Bottom"
-                           Fill="{DynamicResource BrushBorder}" Margin="0"/>
+                           Fill="{StaticResource BrushBorder}" Margin="0"/>
 
                 <!-- Nav Items -->
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Disabled">
-                <StackPanel Margin="0,16,0,0">
+                    <StackPanel Margin="0,16,0,0">
 
-                    <TextBlock Text="TỔNG QUAN" Foreground="{DynamicResource BrushMuted}"
-                               FontSize="10" FontWeight="SemiBold"
-                               Margin="22,0,0,8"/>
+                        <TextBlock Text="TỔNG QUAN" Foreground="{StaticResource BrushMuted}"
+                                   FontSize="10" FontWeight="SemiBold" Margin="22,0,0,8"/>
 
-                    <!-- System Info -->
-                    <Button x:Name="BtnNavSysInfo"
-                            Style="{StaticResource NavBtn}"
-                            Click="SysInfo_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7" Margin="0,0,12,0">
-                                <TextBlock Text="💻" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" Background="#FFFDFBFB"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="System Info"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Thông tin hệ thống"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button x:Name="BtnNavSysInfo" Style="{StaticResource NavBtn}" Click="SysInfo_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F1F5F9" Margin="0,0,12,0">
+                                    <TextBlock Text="💻" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="System Info" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Thông tin hệ thống" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="16,12"/>
+                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="16,12"/>
 
-                    <TextBlock Text="TÍNH NĂNG" Foreground="{DynamicResource BrushMuted}"
-                               FontSize="10" FontWeight="SemiBold"
-                               Margin="22,0,0,8"/>
+                        <TextBlock Text="TÍNH NĂNG" Foreground="{StaticResource BrushMuted}"
+                                   FontSize="10" FontWeight="SemiBold" Margin="22,0,0,8"/>
 
-                    <!-- Deploy -->
-                    <Button x:Name="BtnNavDeploy"
-                            Style="{StaticResource NavBtn}"
-                            Click="Deploy_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF9FBFF" Margin="0,0,12,0">
-                                <TextBlock Text="🚀" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" Background="#FFF9F6F6"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock x:Name="TxtDeploy" Text="Deploy"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Cài phần mềm"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="Deploy_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F9FBFF" Margin="0,0,12,0">
+                                    <TextBlock Text="🚀" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Deploy" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Cài phần mềm" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Optimize -->
-                    <Button x:Name="BtnNavOptimize"
-                            Style="{StaticResource NavBtn}"
-                            Click="Optimize_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFE7E4F0" Margin="0,0,12,0">
-                                <TextBlock Text="⚡" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Optimize"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Tối ưu hệ thống"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="Optimize_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#E7E4F0" Margin="0,0,12,0">
+                                    <TextBlock Text="⚡" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Optimize" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Tối ưu hệ thống" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Network Fix -->
-                    <Button x:Name="BtnNavNetwork"
-                            Style="{StaticResource NavBtn}"
-                            Click="Network_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF9F6F5" Margin="0,0,12,0">
-                                <TextBlock Text="🔧" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Network Fix"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Sửa lỗi mạng"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="Network_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F9F6F5" Margin="0,0,12,0">
+                                    <TextBlock Text="🔧" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Network Fix" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Sửa lỗi mạng" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Security -->
-                    <Button x:Name="BtnNavSecurity"
-                            Style="{StaticResource NavBtn}"
-                            Click="Security_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF5F4F8" Margin="0,0,12,0">
-                                <TextBlock Text="🔒" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Security"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Cấu hình bảo mật"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="Security_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F5F4F8" Margin="0,0,12,0">
+                                    <TextBlock Text="🔒" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Security" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Cấu hình bảo mật" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Debloat -->
-                    <Button x:Name="BtnNavDebloat"
-                            Style="{StaticResource NavBtn}"
-                            Click="Debloat_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFFCE4EC" Margin="0,0,12,0">
-                                <TextBlock Text="🧹" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Debloat"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Gỡ ứng dụng thừa"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="Debloat_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#FCE4EC" Margin="0,0,12,0">
+                                    <TextBlock Text="🧹" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Debloat" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Gỡ ứng dụng thừa" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Quick Setup -->
-                    <Button x:Name="BtnNavQuickSetup"
-                            Style="{StaticResource NavBtn}"
-                            Click="QuickSetup_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF3FDFA" Margin="0,0,12,0">
-                                <TextBlock Text="⚡" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Thiết lập nhanh"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Tinh chỉnh hệ thống"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="QuickSetup_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F3FDFA" Margin="0,0,12,0">
+                                    <TextBlock Text="⚡" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Thiết lập nhanh" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Tinh chỉnh hệ thống" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="16,16"/>
-
-                    <TextBlock Text="CÔNG CỤ" Foreground="{DynamicResource BrushMuted}"
-                               FontSize="10" FontWeight="SemiBold"
-                               Margin="22,0,0,8"/>
-
-                    <!-- BitLocker -->
-                    <Button Style="{StaticResource NavBtn}" Click="BitLocker_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF8F9F9" Margin="0,0,12,0">
-                                <TextBlock Text="🔑" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="BitLocker"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Mã hoá ổ đĩa"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="OfficeInstall_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#FFF7ED" Margin="0,0,12,0">
+                                    <TextBlock Text="📦" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Cài đặt Office" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Tải và cài đặt Office" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Startup Manager -->
-                    <Button Style="{StaticResource NavBtn}" Click="StartupManager_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF0FDF4" Margin="0,0,12,0">
-                                <TextBlock Text="🚦" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Startup Manager"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Ứng dụng khởi động"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="16,16"/>
+
+                        <TextBlock Text="CÔNG CỤ" Foreground="{StaticResource BrushMuted}"
+                                   FontSize="10" FontWeight="SemiBold" Margin="22,0,0,8"/>
+
+                        <Button Style="{StaticResource NavBtn}" Click="BitLocker_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F8F9F9" Margin="0,0,12,0">
+                                    <TextBlock Text="🔑" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="BitLocker" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Mã hoá ổ đĩa" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Disk Cleaner -->
-                    <Button Style="{StaticResource NavBtn}" Click="DiskCleaner_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFFEFCE8" Margin="0,0,12,0">
-                                <TextBlock Text="🧽" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Disk Cleaner"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Dọn file rác hệ thống"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="StartupManager_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F0FDF4" Margin="0,0,12,0">
+                                    <TextBlock Text="🚦" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Startup Manager" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Ứng dụng khởi động" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Driver Info -->
-                    <Button Style="{StaticResource NavBtn}" Click="DriverInfo_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF5F3FF" Margin="0,0,12,0">
-                                <TextBlock Text="🔌" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Driver Info"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Thông tin driver thiết bị"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="DiskCleaner_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#FEFCE8" Margin="0,0,12,0">
+                                    <TextBlock Text="🧽" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Disk Cleaner" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Dọn file rác hệ thống" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Process Manager -->
-                    <Button Style="{StaticResource NavBtn}" Click="ProcessManager_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFFFF7ED" Margin="0,0,12,0">
-                                <TextBlock Text="⚙" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Process Manager"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Tiến trình &amp; bộ nhớ"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="DriverInfo_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F5F3FF" Margin="0,0,12,0">
+                                    <TextBlock Text="🔌" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Driver Info" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Thông tin driver thiết bị" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="16,12"/>
-
-                    <TextBlock Text="NÂNG CAO" Foreground="{DynamicResource BrushMuted}"
-                               FontSize="10" FontWeight="SemiBold"
-                               Margin="22,0,0,8"/>
-
-                    <!-- Backup & Restore -->
-                    <Button Style="{StaticResource NavBtn}" Click="BackupRestore_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFEFF6FF" Margin="0,0,12,0">
-                                <TextBlock Text="💾" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Backup &amp; Restore"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Xuất / nhập cài đặt"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="ProcessManager_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#FFF7ED" Margin="0,0,12,0">
+                                    <TextBlock Text="⚙" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Process Manager" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Tiến trình &amp; bộ nhớ" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Scheduled Tasks -->
-                    <Button Style="{StaticResource NavBtn}" Click="ScheduledTask_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF0FDF4" Margin="0,0,12,0">
-                                <TextBlock Text="🗓" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Scheduled Tasks"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Tác vụ được lên lịch"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="16,12"/>
+
+                        <TextBlock Text="NÂNG CAO" Foreground="{StaticResource BrushMuted}"
+                                   FontSize="10" FontWeight="SemiBold" Margin="22,0,0,8"/>
+
+                        <Button Style="{StaticResource NavBtn}" Click="BackupRestore_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#EFF6FF" Margin="0,0,12,0">
+                                    <TextBlock Text="💾" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Backup &amp; Restore" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Xuất / nhập cài đặt" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Windows Update -->
-                    <Button Style="{StaticResource NavBtn}" Click="WindowsUpdate_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFFFF7ED" Margin="0,0,12,0">
-                                <TextBlock Text="🔄" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Windows Update"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Tạm dừng / tiếp tục"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="ScheduledTask_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F0FDF4" Margin="0,0,12,0">
+                                    <TextBlock Text="🗓" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Scheduled Tasks" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Tác vụ được lên lịch" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Event Log -->
-                    <Button Style="{StaticResource NavBtn}" Click="EventLog_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#FFF1F5F9" Margin="0,0,12,0">
-                                <TextBlock Text="📋" FontSize="13"
-                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Event Log"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Nhật ký sự kiện Windows"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="WindowsUpdate_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#FFF7ED" Margin="0,0,12,0">
+                                    <TextBlock Text="🔄" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Windows Update" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Tạm dừng / tiếp tục" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="16,12"/>
-
-                    <TextBlock Text="HỆ THỐNG" Foreground="{DynamicResource BrushMuted}"
-                               FontSize="10" FontWeight="SemiBold"
-                               Margin="22,0,0,8"/>
-
-                    <!-- Logs -->
-                    <Button Style="{StaticResource NavBtn}" Click="Logs_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#F1F5F9" Margin="0,0,12,0">
-                                <TextBlock Text="📑" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Activity Log"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Lịch sử thao tác"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Button Style="{StaticResource NavBtn}" Click="EventLog_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F1F5F9" Margin="0,0,12,0">
+                                    <TextBlock Text="📋" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Event Log" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Nhật ký sự kiện Windows" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                    <!-- Settings -->
-                    <Button Style="{StaticResource NavBtn}" Click="Settings_Click">
-                        <StackPanel Orientation="Horizontal">
-                            <Border Width="28" Height="28" CornerRadius="7"
-                                    Background="#EFF6FF" Margin="0,0,12,0">
-                                <TextBlock Text="⚙" FontSize="13"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Border>
-                            <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Cài đặt"
-                                           Foreground="{DynamicResource BrushText}" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Màu sắc &amp; giao diện"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="10"/>
+                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="16,12"/>
+
+                        <TextBlock Text="HỆ THỐNG" Foreground="{StaticResource BrushMuted}"
+                                   FontSize="10" FontWeight="SemiBold" Margin="22,0,0,8"/>
+
+                        <Button Style="{StaticResource NavBtn}" Click="Logs_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#F1F5F9" Margin="0,0,12,0">
+                                    <TextBlock Text="📑" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Activity Log" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Lịch sử thao tác" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Button>
+                        </Button>
 
-                </StackPanel>
+                        <Button Style="{StaticResource NavBtn}" Click="Settings_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Border Width="28" Height="28" CornerRadius="7" Background="#EFF6FF" Margin="0,0,12,0">
+                                    <TextBlock Text="⚙" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <StackPanel VerticalAlignment="Center">
+                                    <TextBlock Text="Cài đặt" Foreground="{StaticResource BrushText}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="Màu sắc &amp; giao diện" Foreground="{StaticResource BrushMuted}" FontSize="10"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
                 </ScrollViewer>
 
                 <!-- Bottom info -->
                 <Border x:Name="BottomCard"
                         Grid.Row="2" Margin="12,10,20,16" Padding="12"
-                        Background="{DynamicResource BrushCard}" CornerRadius="8"
-                        BorderBrush="{DynamicResource BrushBorder}" BorderThickness="1">
+                        Background="{StaticResource BrushCard}" CornerRadius="8"
+                        BorderBrush="{StaticResource BrushBorder}" BorderThickness="1">
                     <StackPanel>
-                        <TextBlock Text="💻  Máy chủ: localhost"
-                                   Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
                         <TextBlock Text="👤  Admin"
-                                   Foreground="{DynamicResource BrushMuted}" FontSize="11" Margin="0,4,0,0"/>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,10,0,10"/>
+                                   Foreground="{StaticResource BrushMuted}" FontSize="11" Margin="0,0,0,8"/>
+                        <Rectangle Height="1" Fill="{StaticResource BrushBorder}" Margin="0,8,0,10"/>
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock x:Name="TxtThemeIcon" Text="🌙"
                                            FontSize="12" VerticalAlignment="Center" Margin="0,0,6,0"/>
                                 <TextBlock x:Name="TxtThemeLabel" Text="Giao diện tối"
-                                           Foreground="{DynamicResource BrushMuted}" FontSize="11"
+                                           Foreground="{StaticResource BrushMuted}" FontSize="11"
                                            VerticalAlignment="Center"/>
                             </StackPanel>
-                            <CheckBox x:Name="ChkDarkMode"
-                                      Style="{StaticResource ToggleSwitch}"
-                                      HorizontalAlignment="Right" VerticalAlignment="Center"
-                                      Checked="DarkMode_Changed" Unchecked="DarkMode_Changed"/>
+                            <ToggleSwitch x:Name="ChkDarkMode"
+                                          Grid.Column="1"
+                                          OnContent="" OffContent=""
+                                          MinWidth="0"
+                                          Toggled="DarkMode_Toggled"/>
                         </Grid>
                     </StackPanel>
                 </Border>
@@ -453,10 +341,8 @@
 
         <!-- ===== CONTENT FRAME ===== -->
         <Frame x:Name="MainFrame"
-               x:FieldModifier="public"
                Grid.Column="1"
-               NavigationUIVisibility="Hidden"
-               Background="{DynamicResource BrushBg}" Margin="0,0,10,0" Grid.ColumnSpan="2"/>
+               Background="{StaticResource BrushBg}"/>
 
     </Grid>
 </Window>

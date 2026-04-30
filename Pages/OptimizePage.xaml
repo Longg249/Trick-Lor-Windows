@@ -1,7 +1,11 @@
 <Page x:Class="TrickLor.Pages.OptimizePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="{DynamicResource BrushBg}">
+      xmlns:local="using:TrickLor.Pages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Background="{ThemeResource BrushBg}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -11,8 +15,8 @@
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Border Grid.Row="0" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
+        <Border Grid.Row="0" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,0,0,1" Padding="32,20">
             <StackPanel>
                 <TextBlock Style="{StaticResource PageTitle}" Text="⚡ Optimize"/>
                 <TextBlock Style="{StaticResource PageSubtitle}"
@@ -42,48 +46,48 @@
                                 <TextBlock Text="🚀" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Hiệu suất" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Performance tuning" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Hiệu suất" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Performance tuning" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt hiệu ứng hình ảnh" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Visual FX → Best Performance" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt hiệu ứng hình ảnh" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Visual FX → Best Performance" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglVisualFX" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglVisualFX" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="High Performance Power Plan" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Tối đa hoá hiệu suất CPU" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="High Performance Power Plan" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Tối đa hoá hiệu suất CPU" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglPowerPlan" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglPowerPlan" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt SysMain (Superfetch)" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Giảm tải đọc đĩa nền" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt SysMain (Superfetch)" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Giảm tải đọc đĩa nền" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglSysMain" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglSysMain" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Windows Search Indexing" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Giảm ghi đĩa ngầm" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Windows Search Indexing" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Giảm ghi đĩa ngầm" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglSearchIndex" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglSearchIndex" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button x:Name="BtnApplyPerf" Style="{StaticResource BtnPrimary}"
@@ -100,48 +104,48 @@
                                 <TextBlock Text="🔐" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Quyền riêng tư" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Privacy &amp; telemetry" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Quyền riêng tư" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Privacy &amp; telemetry" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Telemetry" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Ngừng gửi dữ liệu về Microsoft" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Telemetry" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Ngừng gửi dữ liệu về Microsoft" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglTelemetry" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglTelemetry" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Cortana" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Vô hiệu trợ lý ảo Windows" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Cortana" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Vô hiệu trợ lý ảo Windows" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglCortana" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglCortana" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Advertising ID" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Ngừng theo dõi quảng cáo" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Advertising ID" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Ngừng theo dõi quảng cáo" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglAdID" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglAdID" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Activity History" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Xoá lịch sử hoạt động Timeline" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Activity History" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Xoá lịch sử hoạt động Timeline" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglActivity" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglActivity" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button x:Name="BtnApplyPrivacy" Style="{StaticResource BtnPurple}"
@@ -158,38 +162,38 @@
                                 <TextBlock Text="💾" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Dọn dẹp bộ nhớ" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Storage cleanup" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Dọn dẹp bộ nhớ" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Storage cleanup" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Xoá Temp Files" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="%TEMP% và Windows\Temp" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Xoá Temp Files" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="%TEMP% và Windows\Temp" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglTemp" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglTemp" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Dọn Recycle Bin" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Làm trống thùng rác" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Dọn Recycle Bin" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Làm trống thùng rác" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglRecycle" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglRecycle" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Hibernation" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Xoá file hiberfil.sys (~GB)" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Hibernation" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Xoá file hiberfil.sys (~GB)" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglHibernate" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglHibernate" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button x:Name="BtnApplyStorage" Style="{StaticResource BtnGreen}"
@@ -206,38 +210,38 @@
                                 <TextBlock Text="⏱" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                             <StackPanel VerticalAlignment="Center">
-                                <TextBlock Text="Khởi động" Foreground="{DynamicResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
-                                <TextBlock Text="Startup speed" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Khởi động" Foreground="{ThemeResource BrushText}" FontSize="15" FontWeight="SemiBold"/>
+                                <TextBlock Text="Startup speed" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
                         </StackPanel>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Bật Fast Startup" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Khởi động Windows nhanh hơn" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Bật Fast Startup" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Khởi động Windows nhanh hơn" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglFastBoot" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglFastBoot" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Tắt Xbox Game Bar" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Loại bỏ overlay không cần thiết" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Tắt Xbox Game Bar" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Loại bỏ overlay không cần thiết" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglGameBar" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglGameBar" Grid.Column="1" IsChecked="True" VerticalAlignment="Center"/>
                         </Grid>
-                        <Rectangle Height="1" Fill="{DynamicResource BrushBorder}" Margin="0,0,0,12"/>
+                        <Rectangle Height="1" Fill="{ThemeResource BrushBorder}" Margin="0,0,0,12"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="Flush DNS khi khởi động" Foreground="{DynamicResource BrushText}" FontSize="13"/>
-                                <TextBlock Text="Thêm task tự động reset DNS" Foreground="{DynamicResource BrushMuted}" FontSize="11"/>
+                                <TextBlock Text="Flush DNS khi khởi động" Foreground="{ThemeResource BrushText}" FontSize="13"/>
+                                <TextBlock Text="Thêm task tự động reset DNS" Foreground="{ThemeResource BrushMuted}" FontSize="11"/>
                             </StackPanel>
-                            <CheckBox x:Name="TglFlushDns" Grid.Column="1" Style="{StaticResource ToggleSwitch}" IsChecked="False" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="TglFlushDns" Grid.Column="1" IsChecked="False" VerticalAlignment="Center"/>
                         </Grid>
 
                         <Button x:Name="BtnApplyStartup" Style="{StaticResource BtnOrange}"
@@ -250,11 +254,11 @@
         </ScrollViewer>
 
         <!-- BOTTOM STATUS -->
-        <Border Grid.Row="2" Background="{DynamicResource BrushSidebar}"
-                BorderBrush="{DynamicResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
+        <Border Grid.Row="2" Background="{ThemeResource BrushSidebar}"
+                BorderBrush="{ThemeResource BrushBorder}" BorderThickness="0,1,0,0" Padding="32,14">
             <TextBlock x:Name="TxtOptStatus"
                        Text="Chọn tùy chọn và nhấn Áp dụng theo từng nhóm"
-                       Foreground="{DynamicResource BrushMuted}" FontSize="13" VerticalAlignment="Center"/>
+                       Foreground="{ThemeResource BrushMuted}" FontSize="13" VerticalAlignment="Center"/>
         </Border>
     </Grid>
 </Page>

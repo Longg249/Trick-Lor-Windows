@@ -1,10 +1,10 @@
-using System.Windows;
-using System.Windows.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using TrickLor.Services;
 
 namespace TrickLor.Pages
 {
-    public partial class DiskCleanerPage : Page
+    public sealed partial class DiskCleanerPage : Page
     {
         public DiskCleanerPage() => InitializeComponent();
 
@@ -20,7 +20,7 @@ namespace TrickLor.Pages
 
         private async void Estimate_Click(object sender, RoutedEventArgs e)
         {
-            TxtStatus.Text   = "⏳ Đang tính toán dung lượng...";
+            TxtStatus.Text = "⏳ Đang tính toán dung lượng...";
             TxtEstimate.Text = "...";
             long bytes = await DiskCleanerService.EstimateAsync(BuildOpts());
             TxtEstimate.Text = DiskCleanerService.FormatSize(bytes);

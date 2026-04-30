@@ -1,19 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using TrickLor.Services;
 
 namespace TrickLor.Pages
 {
-    public partial class DriverPage : Page
+    public sealed partial class DriverPage : Page
     {
         private List<DriverEntry> _all = new();
 
         public DriverPage() => InitializeComponent();
 
         private async void Page_Loaded(object sender, RoutedEventArgs e) => await LoadAsync();
-
         private async void Refresh_Click(object sender, RoutedEventArgs e) => await LoadAsync();
 
         private async System.Threading.Tasks.Task LoadAsync()

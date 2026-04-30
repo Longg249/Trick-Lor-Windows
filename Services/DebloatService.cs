@@ -1,147 +1,214 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 
 namespace TrickLor.Services
 {
     public static class DebloatService
     {
-        // ── System Restore ───────────────────────────────────────────────────
-
         public static async Task<string> CreateRestorePointAsync(IProgress<string> progress)
         {
-            try
+            return await Task.Run(() =>
             {
-                progress.Report("⏳ Đang bật Volume Shadow Copy...");
-                await RunCmdAsync("sc config VSS start= auto");
-                await RunCmdAsync("net start VSS 2>nul");
-
-                progress.Report("⏳ Đang bật System Restore trên ổ C:\\...");
-                await RunPSAsync(@"Enable-ComputerRestore -Drive 'C:\' -ErrorAction SilentlyContinue");
-
-                progress.Report("⏳ Đang tạo điểm khôi phục — vui lòng chờ...");
-                var out_ = await RunPSWithOutputAsync(@"
-Checkpoint-Computer -Description 'TrickLor Pre-Debloat' -RestorePointType MODIFY_SETTINGS -ErrorAction SilentlyContinue
-Write-Output 'DONE'
-");
-                return out_.Contains("DONE")
-                    ? "✅ Đã tạo điểm khôi phục thành công"
-                    : "⚠  Windows giới hạn 1 điểm / 24h — hệ thống đã có điểm gần đây";
-            }
-            catch (Exception ex)
-            {
-                return $"❌ Lỗi tạo điểm khôi phục: {ex.Message}";
-            }
+                try
+                {
+                    progress?.Report("Tạo điểm khôi phục hệ thống...");
+                    var psi = new ProcessStartInfo
+                    {
+                        FileName = "powershell.exe",
+                        Arguments = "-Command \"Checkpoint-Computer -Description 'TrickLor Debloat' -RestorePointType MODIFY_SETTINGS\"",
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true
+                    };
+                    using var p = Process.Start(psi);
+                    p.WaitForExit();
+                    return p.ExitCode == 0 ? "✅ Đã tạo điểm khôi phục thành công" : "⚠️ Không thể tạo điểm khôi phục (có thể tính năng bị tắt)";
+                }
+                catch (Exception ex)
+                {
+                    return $"❌ Lỗi: {ex.Message}";
+                }
+            });
         }
 
         public static void OpenSystemRestoreUI()
         {
-            try { Process.Start(new ProcessStartInfo("rstrui.exe") { UseShellExecute = true }); }
-            catch { }
+            Process.Start("rstrui.exe");
         }
 
-        // ── AppX removal (current user + all users + provisioned) ────────────
-
-        public static Task RemoveAppxAsync(string pattern, IProgress<string> progress)
+        public static async Task RemoveAppxAsync(string packageName, IProgress<string> progress)
         {
-            progress.Report($"⏳ Gỡ {pattern}...");
-            return RunPSAsync($@"
-$p = '{pattern}'
-Get-AppxPackage         -Name $p -ErrorAction SilentlyContinue | Remove-AppxPackage            -ErrorAction SilentlyContinue
-Get-AppxPackage -AllUsers -Name $p -ErrorAction SilentlyContinue | Remove-AppxPackage           -ErrorAction SilentlyContinue
-Get-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue |
-    Where-Object DisplayName -Like $p |
-    Remove-AppxProvisionedPackage -Online -ErrorAction SilentlyContinue
-");
+            await Task.Run(() =>
+            {
+                progress?.Report($"Đang gỡ {packageName}...");
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "powershell.exe",
+                    Arguments = $"-Command \"Get-AppxPackage *{packageName}* | Remove-AppxPackage\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+                using var p = Process.Start(psi);
+                p.WaitForExit();
+                if (p.ExitCode != 0)
+                    throw new Exception($"Lỗi khi gỡ {packageName}");
+            });
         }
 
-        // ── OneDrive ─────────────────────────────────────────────────────────
+        public static async Task DisableChatWidgetAsync(IProgress<string> progress)
+        {
+            await Task.Run(() =>
+            {
+                progress?.Report("Đang tắt Teams Chat trên taskbar...");
+                using var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+                key?.SetValue("TaskbarMn", 0, RegistryValueKind.DWord);
+            });
+        }
 
         public static async Task RemoveOneDriveAsync(IProgress<string> progress)
         {
-            progress.Report("⏳ Đang gỡ OneDrive...");
-            await RunCmdAsync("taskkill /f /im OneDrive.exe 2>nul");
-            await Task.Delay(1500);
-            await RunPSAsync(@"
-$paths = @(
-    ""$env:SystemRoot\SysWOW64\OneDriveSetup.exe"",
-    ""$env:SystemRoot\System32\OneDriveSetup.exe"",
-    ""$env:LOCALAPPDATA\Microsoft\OneDrive\OneDriveSetup.exe""
-)
-foreach ($p in $paths) {
-    if (Test-Path $p) {
-        Start-Process $p -ArgumentList '/uninstall' -Wait -ErrorAction SilentlyContinue
-        break
-    }
-}
-# Remove registry autorun
-Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' -Name 'OneDrive' -ErrorAction SilentlyContinue
-");
-        }
-
-        // ── Registry / feature disables ──────────────────────────────────────
-
-        public static Task DisableChatWidgetAsync(IProgress<string> progress)
-        {
-            progress.Report("⏳ Tắt Teams Chat Taskbar...");
-            return RunPSAsync(@"
-$p = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-Set-ItemProperty -Path $p -Name TaskbarMn -Value 0 -Type DWord -Force -ErrorAction SilentlyContinue
-");
-        }
-
-        public static Task DisableWidgetsAsync(IProgress<string> progress)
-        {
-            progress.Report("⏳ Tắt Widgets Taskbar...");
-            return RunPSAsync(@"
-$p = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-Set-ItemProperty -Path $p -Name TaskbarDa -Value 0 -Type DWord -Force -ErrorAction SilentlyContinue
-");
-        }
-
-        public static Task DisableBingSearchAsync(IProgress<string> progress)
-        {
-            progress.Report("⏳ Tắt Bing Search trong Start...");
-            return RunPSAsync(@"
-$p = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Search'
-if (-not (Test-Path $p)) { New-Item -Path $p -Force | Out-Null }
-Set-ItemProperty -Path $p -Name BingSearchEnabled -Value 0 -Type DWord -Force -ErrorAction SilentlyContinue
-Set-ItemProperty -Path $p -Name CortanaConsent    -Value 0 -Type DWord -Force -ErrorAction SilentlyContinue
-");
-        }
-
-        // ── Helpers ──────────────────────────────────────────────────────────
-
-        private static Task RunCmdAsync(string cmd) => Task.Run(() =>
-        {
-            using var p = Process.Start(new ProcessStartInfo("cmd.exe", $"/c {cmd}")
-            { CreateNoWindow = true, UseShellExecute = false });
-            p?.WaitForExit();
-        });
-
-        private static Task RunPSAsync(string script) => Task.Run(() =>
-        {
-            var enc = Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(script));
-            using var p = Process.Start(new ProcessStartInfo("powershell.exe",
-                $"-NonInteractive -NoProfile -ExecutionPolicy Bypass -EncodedCommand {enc}")
-            { CreateNoWindow = true, UseShellExecute = false });
-            p?.WaitForExit();
-        });
-
-        private static Task<string> RunPSWithOutputAsync(string script) => Task.Run(() =>
-        {
-            var enc = Convert.ToBase64String(System.Text.Encoding.Unicode.GetBytes(script));
-            var psi = new ProcessStartInfo("powershell.exe",
-                $"-NonInteractive -NoProfile -ExecutionPolicy Bypass -EncodedCommand {enc}")
+            await Task.Run(() =>
             {
-                CreateNoWindow = true,
+                progress?.Report("Đang gỡ OneDrive...");
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "powershell.exe",
+                    Arguments = "-Command \"Stop-Process -Name OneDrive -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 2; winget uninstall --id Microsoft.OneDrive --silent --accept-package-agreements; Remove-Item -Path \\\"$env:USERPROFILE\\OneDrive\\\" -Recurse -Force -ErrorAction SilentlyContinue\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+                Process.Start(psi).WaitForExit();
+            });
+        }
+
+        public static async Task DisableWidgetsAsync(IProgress<string> progress)
+        {
+            await Task.Run(() =>
+            {
+                progress?.Report("Đang tắt Widgets...");
+                using var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", true);
+                key?.SetValue("TaskbarDa", 0, RegistryValueKind.DWord);
+            });
+        }
+
+        public static async Task DisableBingSearchAsync(IProgress<string> progress)
+        {
+            await Task.Run(() =>
+            {
+                progress?.Report("Đang tắt Bing Search trong Start Menu...");
+                using var key = Registry.CurrentUser.CreateSubKey(@"Software\Policies\Microsoft\Windows\Explorer");
+                key?.SetValue("DisableSearchBoxSuggestions", 1, RegistryValueKind.DWord);
+            });
+        }
+
+        public static async Task<List<BloatwareItem>> GetInstalledBloatwareAsync()
+        {
+            var items = new List<BloatwareItem>();
+            var packages = await GetAppxPackagesAsync();
+            if (packages == null) return items;
+
+            var bloatwareList = new (string Display, string Pattern)[]
+            {
+                ("Xbox App", "XboxApp"),
+                ("Xbox Game Bar", "XboxGamingOverlay"),
+                ("Xbox Game Overlay", "XboxGameOverlay"),
+                ("Xbox Identity Provider", "XboxIdentityProvider"),
+                ("Xbox TCUI", "Xbox.TCUI"),
+                ("Solitaire Collection", "MicrosoftSolitaireCollection"),
+                ("3D Viewer", "3DViewer"),
+                ("Mixed Reality Portal", "MixedReality.Portal"),
+                ("Groove Music", "ZuneMusic"),
+                ("Movies & TV", "ZuneVideo"),
+                ("Get Started / Tips", "Getstarted"),
+                ("Skype", "SkypeApp"),
+                ("People", "People"),
+                ("Mail & Calendar", "windowscommunicationsapps"),
+                ("Your Phone", "YourPhone"),
+                ("Cortana", "549981C3F5F10"),
+                ("Office Hub", "MicrosoftOfficeHub"),
+                ("Feedback Hub", "WindowsFeedbackHub"),
+                ("OneNote (Store)", "Office.OneNote"),
+                ("Maps", "WindowsMaps"),
+                ("Bing News", "BingNews"),
+                ("Bing Weather", "BingWeather"),
+                ("Candy Crush", "Candy"),
+                ("Spotify", "SpotifyMusic"),
+                ("Amazon", "Amazon.com.Amazon"),
+                ("Facebook", "Facebook.Facebook"),
+                ("TikTok", "TikTok"),
+                ("LinkedIn", "LinkedIn")
+            };
+
+            foreach (var bloat in bloatwareList)
+            {
+                var pkg = packages.FirstOrDefault(p => p.Name?.Contains(bloat.Pattern, StringComparison.OrdinalIgnoreCase) == true);
+                if (pkg != null)
+                {
+                    items.Add(new BloatwareItem
+                    {
+                        DisplayName = bloat.Display,
+                        PackageName = pkg.PackageFullName,
+                        IsSelected = false
+                    });
+                }
+            }
+            return items;
+        }
+
+        private static async Task<List<AppxPackage>> GetAppxPackagesAsync()
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = "powershell.exe",
+                Arguments = "-NoProfile -Command Get-AppxPackage | Select-Object Name, PackageFullName | ConvertTo-Json",
                 UseShellExecute = false,
-                RedirectStandardOutput = true
+                RedirectStandardOutput = true,
+                CreateNoWindow = true
             };
             using var p = Process.Start(psi);
-            var output = p?.StandardOutput.ReadToEnd() ?? "";
-            p?.WaitForExit();
-            return output;
-        });
+            string json = await p.StandardOutput.ReadToEndAsync();
+            await p.WaitForExitAsync();
+            if (string.IsNullOrWhiteSpace(json)) return null;
+
+            try
+            {
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                return JsonSerializer.Deserialize<List<AppxPackage>>(json, options);
+            }
+            catch (JsonException)
+            {
+                var single = JsonSerializer.Deserialize<AppxPackage>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return single != null ? new List<AppxPackage> { single } : null;
+            }
+        }
+
+        private class AppxPackage
+        {
+            public string Name { get; set; }
+            public string PackageFullName { get; set; }
+        }
+    }
+
+    public class BloatwareItem : System.ComponentModel.INotifyPropertyChanged
+    {
+        private bool _isSelected;
+        public string DisplayName { get; set; }
+        public string PackageName { get; set; }
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set { _isSelected = value; OnPropertyChanged(); }
+        }
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string name = null)
+            => PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(name));
     }
 }
